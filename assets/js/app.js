@@ -13,6 +13,7 @@ const languageButtons = [...document.querySelectorAll("[data-lang-option]")];
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const parallaxMedia = window.matchMedia("(min-width: 1025px)");
 const preferredLanguageKey = "livinglyph-language";
+const samuraiLoopImages = Array.from({ length: 56 }, (_, index) => `loop${index + 1}@2x.png`);
 
 const translations = {
   ja: {
@@ -299,6 +300,45 @@ function setupSamuraiSlider() {
   updateSlider();
 }
 
+function shuffleItems(items) {
+  const shuffled = [...items];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+
+  return shuffled;
+}
+
+function setupSamuraiMarquees() {
+  const marqueeTracks = [...document.querySelectorAll("[data-samurai-marquee]")];
+
+  if (!marqueeTracks.length) {
+    return;
+  }
+
+  marqueeTracks.forEach((track, rowIndex) => {
+    const shuffled = shuffleItems(samuraiLoopImages);
+    const offset = (rowIndex * 13) % shuffled.length;
+    const sequence = [...shuffled.slice(offset), ...shuffled.slice(0, offset)];
+    const repeatedSequence = [...sequence, ...sequence];
+    const fragment = document.createDocumentFragment();
+
+    repeatedSequence.forEach((fileName) => {
+      const image = document.createElement("img");
+      image.src = `../assets/images/samurai-art/loop/${fileName}`;
+      image.alt = "";
+      image.decoding = "async";
+      image.setAttribute("aria-hidden", "true");
+      fragment.appendChild(image);
+    });
+
+    track.textContent = "";
+    track.appendChild(fragment);
+  });
+}
+
 function hydrateRiseText() {
   riseTextItems.forEach((item) => {
     const lines = item.innerHTML
@@ -411,6 +451,7 @@ languageButtons.forEach((button) => {
 applyLanguage(getSavedLanguage(), false);
 setupHeroVideo();
 setupContactForm();
+setupSamuraiMarquees();
 setupSamuraiSlider();
 
 const revealObserver = new IntersectionObserver(
