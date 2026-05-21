@@ -14,6 +14,10 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const parallaxMedia = window.matchMedia("(min-width: 1025px)");
 const preferredLanguageKey = "livinglyph-language";
 const samuraiLoopImages = Array.from({ length: 56 }, (_, index) => `loop${index + 1}@2x.png`);
+const worksLoopImages = Array.from(
+  { length: 39 },
+  (_, index) => `gallery${String(index + 1).padStart(2, "0")}@2x.png`,
+);
 
 const translations = {
   ja: {
@@ -21,6 +25,8 @@ const translations = {
     navStoryCaption: "LIVINGLYPHについて",
     navGallery: "GALLERY",
     navGalleryCaption: "作品を見る",
+    navWorks: "WORKS",
+    navWorksCaption: "制作実績",
     navSamurai: "SAMURAI ART",
     navSamuraiCaption: "侍アート",
     navShop: "SHOP",
@@ -55,13 +61,24 @@ const translations = {
     samuraiConceptP2: "LIVINGLYPHでは、その思想をヒントに、タイポグラフィと日本の侍魂を融合。",
     samuraiConceptP3: "文字を通して自己表現を行い、日本の文化を世界に伝えるサムライアートを発信してゆく。",
     samuraiCraftCaption: "作品名の頭文字を頭の文字で兜や甲冑へ。",
-    footerCopy: "© LIVINGLYPH",
+    worksKicker: "WORKS",
+    worksTitle: "WORKS",
+    worksProcessTitle: "制作プロセス",
+    worksProcessNote: "（似顔絵の場合）",
+    worksStep1Title: "言葉と写真を決める",
+    worksStep2Title: "似顔絵制作",
+    worksStep2Caption: "顔の骨格に合わせ<br />文字を一文字ずつ構成し、<br />作品として仕上げていく。",
+    worksStep3Title: "微調整をして完成",
+    worksStep3Caption: "文字の構成ができたら、<br />微調整をして完成。",
+    footerCopy: "© 2026 LIVINGLYPH. All Rights Reserved.",
   },
   en: {
     navStory: "BRAND STORY",
     navStoryCaption: "About LIVINGLYPH",
     navGallery: "GALLERY",
     navGalleryCaption: "View Works",
+    navWorks: "WORKS",
+    navWorksCaption: "Works",
     navSamurai: "SAMURAI ART",
     navSamuraiCaption: "Samurai Art",
     navShop: "SHOP",
@@ -96,7 +113,16 @@ const translations = {
     samuraiConceptP2: "Inspired by that spirit, LIVINGLYPH fuses typography with the soul of Japanese samurai.",
     samuraiConceptP3: "Through letters, we create samurai art that expresses identity and shares Japanese culture with the world.",
     samuraiCraftCaption: "Initial letters are shaped into samurai helmets and armor.",
-    footerCopy: "© LIVINGLYPH",
+    worksKicker: "WORKS",
+    worksTitle: "WORKS",
+    worksProcessTitle: "Creative Process",
+    worksProcessNote: "(Portrait example)",
+    worksStep1Title: "Choose Words and Photo",
+    worksStep2Title: "Compose the Portrait",
+    worksStep2Caption: "Letters are placed one by one,<br />following the structure of the face,<br />until the work begins to take form.",
+    worksStep3Title: "Refine and Complete",
+    worksStep3Caption: "Once the glyph structure is formed,<br />the final details are quietly refined.",
+    footerCopy: "© 2026 LIVINGLYPH. All Rights Reserved.",
   },
 };
 
@@ -339,6 +365,173 @@ function setupSamuraiMarquees() {
   });
 }
 
+function setupWorksMarquees() {
+  const marqueeTracks = [...document.querySelectorAll("[data-works-marquee]")];
+
+  if (!marqueeTracks.length) {
+    return;
+  }
+
+  const galleryLayout = [
+    { width: "clamp(9.5rem, 13vw, 13.75rem)", y: "-1.55rem", opacity: "1" },
+    { width: "clamp(7.2rem, 9.5vw, 10.25rem)", y: "2.3rem", opacity: "1" },
+    { width: "clamp(11rem, 15vw, 15.5rem)", y: "0.25rem", opacity: "1" },
+    { width: "clamp(8.4rem, 11vw, 11.7rem)", y: "-2.4rem", opacity: "1" },
+    { width: "clamp(12.2rem, 16vw, 16.6rem)", y: "1.4rem", opacity: "1" },
+    { width: "clamp(7.8rem, 10vw, 10.8rem)", y: "-0.85rem", opacity: "1" },
+    { width: "clamp(10.2rem, 14vw, 14.4rem)", y: "2.8rem", opacity: "1" },
+    { width: "clamp(8.9rem, 12vw, 12.4rem)", y: "-1.9rem", opacity: "1" },
+  ];
+
+  marqueeTracks.forEach((track, rowIndex) => {
+    const offset = (rowIndex * 7) % worksLoopImages.length;
+    const sequence = [...worksLoopImages.slice(offset), ...worksLoopImages.slice(0, offset)];
+    const repeatedSequence = [...sequence, ...sequence];
+    const fragment = document.createDocumentFragment();
+
+    repeatedSequence.forEach((fileName, imageIndex) => {
+      const frame = document.createElement("span");
+      const image = document.createElement("img");
+      const layoutIndex = imageIndex % sequence.length;
+      const layout = galleryLayout[layoutIndex % galleryLayout.length];
+
+      frame.className = "works-gallery__portrait";
+      frame.setAttribute("aria-hidden", "true");
+      frame.style.setProperty("--works-card-width", layout.width);
+      frame.style.setProperty("--works-card-y", layout.y);
+      frame.style.setProperty("--works-card-opacity", layout.opacity);
+      frame.style.setProperty("--works-card-delay", `${(layoutIndex % galleryLayout.length) * -440}ms`);
+
+      image.src = `../assets/images/works/gallery/${fileName}`;
+      image.alt = "";
+      image.decoding = "async";
+      image.setAttribute("aria-hidden", "true");
+
+      frame.appendChild(image);
+      fragment.appendChild(frame);
+    });
+
+    track.textContent = "";
+    track.appendChild(fragment);
+  });
+}
+
+function setupWorksMovies() {
+  const movieRoot = document.querySelector("[data-works-movies]");
+
+  if (!movieRoot) {
+    return;
+  }
+
+  const track = movieRoot.querySelector("[data-works-movie-track]");
+  const slides = [...movieRoot.querySelectorAll("[data-works-movie-slide]")];
+  const prevButton = movieRoot.querySelector("[data-works-movie-prev]");
+  const nextButton = movieRoot.querySelector("[data-works-movie-next]");
+
+  if (!track || !slides.length) {
+    return;
+  }
+
+  let currentIndex = 0;
+
+  track.style.setProperty("--works-movie-count", String(slides.length));
+
+  function stopVideo(video) {
+    video.pause();
+
+    try {
+      video.currentTime = 0;
+    } catch (error) {
+      // Some mobile browsers only allow seeking after metadata has loaded.
+    }
+  }
+
+  function syncActiveVideo() {
+    slides.forEach((slide, index) => {
+      const video = slide.querySelector("video");
+      const isActive = index === currentIndex;
+
+      slide.classList.toggle("is-active", isActive);
+      slide.setAttribute("aria-hidden", isActive ? "false" : "true");
+
+      if (!video) {
+        return;
+      }
+
+      if (isActive) {
+        video.muted = true;
+        video.playsInline = true;
+        video.autoplay = true;
+        video.preload = "metadata";
+
+        if (video.readyState === 0) {
+          video.load();
+        }
+
+        const playPromise = video.play();
+
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {
+            // Browser autoplay policy can still block playback in some local contexts.
+          });
+        }
+        return;
+      }
+
+      stopVideo(video);
+    });
+  }
+
+  function goToSlide(nextIndex) {
+    currentIndex = (nextIndex + slides.length) % slides.length;
+    track.style.setProperty("--works-movie-index", String(currentIndex));
+    syncActiveVideo();
+  }
+
+  prevButton?.addEventListener("click", () => goToSlide(currentIndex - 1));
+  nextButton?.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+  slides.forEach((slide, index) => {
+    const video = slide.querySelector("video");
+
+    slide.setAttribute("aria-hidden", index === currentIndex ? "false" : "true");
+
+    if (!video) {
+      return;
+    }
+
+    const fallback = slide.querySelector(".works-movie-slide__fallback");
+
+    function setVideoErrorState(hasError) {
+      slide.classList.toggle("has-video-error", hasError);
+
+      if (fallback) {
+        fallback.hidden = !hasError;
+      }
+    }
+
+    video.muted = true;
+    video.playsInline = true;
+    video.autoplay = true;
+    video.preload = "metadata";
+
+    if (index !== currentIndex) {
+      stopVideo(video);
+    }
+
+    video.addEventListener("error", () => setVideoErrorState(true));
+    video.addEventListener("loadedmetadata", () => setVideoErrorState(false));
+
+    video.addEventListener("play", () => {
+      if (index !== currentIndex) {
+        stopVideo(video);
+      }
+    });
+  });
+
+  goToSlide(0);
+}
+
 function hydrateRiseText() {
   riseTextItems.forEach((item) => {
     const lines = item.innerHTML
@@ -453,6 +646,8 @@ setupHeroVideo();
 setupContactForm();
 setupSamuraiMarquees();
 setupSamuraiSlider();
+setupWorksMarquees();
+setupWorksMovies();
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
