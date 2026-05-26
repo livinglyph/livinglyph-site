@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="LIVINGLYPHへのお問い合わせページです。作品、制作、取材、その他のお問い合わせはこちらからご連絡ください。"
+      content="LIVINGLYPHのANIMAL ARTページ。動物をテーマにした文字アート作品を紹介します。"
     />
-    <link rel="canonical" href="https://www.livinglyph.com/contact/" />
+    <link rel="canonical" href="https://www.livinglyph.com/animal-art" />
     <meta property="og:site_name" content="LIVINGLYPH" />
-    <meta property="og:title" content="CONTACT | LIVINGLYPH" />
-    <meta property="og:description" content="LIVINGLYPHへのお問い合わせページです。" />
+    <meta property="og:title" content="ANIMAL ART | LIVINGLYPH" />
+    <meta property="og:description" content="LIVINGLYPHの動物をテーマにした文字アート作品を紹介します。" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.livinglyph.com/contact/" />
-    <meta property="og:image" content="https://www.livinglyph.com/assets/images/livinglyph-logo.png" />
+    <meta property="og:url" content="https://www.livinglyph.com/animal-art" />
+    <meta property="og:image" content="https://www.livinglyph.com/assets/images/bengal-tiger.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>CONTACT | LIVINGLYPH</title>
+    <title>ANIMAL ART | LIVINGLYPH</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -49,11 +49,11 @@
           <span class="nav-title" data-i18n="navWorks">WORKS</span>
           <span class="nav-caption" data-i18n="navWorksCaption">制作実績</span>
         </a>
-        <a href="../animal-art/">
+        <a href="./" aria-current="page">
           <span class="nav-title" data-i18n="navAnimal">ANIMAL ART</span>
           <span class="nav-caption" data-i18n="navAnimalCaption">動物アート</span>
         </a>
-        <a href="/samurai-art">
+        <a href="../samurai-art/">
           <span class="nav-title" data-i18n="navSamurai">SAMURAI ART</span>
           <span class="nav-caption" data-i18n="navSamuraiCaption">侍アート</span>
         </a>
@@ -61,7 +61,7 @@
           <span class="nav-title" data-i18n="navShop">SHOP</span>
           <span class="nav-caption" data-i18n="navShopCaption">オンラインストア</span>
         </a>
-        <a href="./" aria-current="page">
+        <a href="../contact/">
           <span class="nav-title" data-i18n="navContact">CONTACT</span>
           <span class="nav-caption" data-i18n="navContactCaption">お問い合わせ</span>
         </a>
@@ -82,62 +82,49 @@
       </nav>
     </header>
 
-    <main class="subpage-main">
-      <section class="contact-section" aria-labelledby="contact-title">
-        <div class="subpage-heading reveal">
-          <p>CONTACT</p>
-          <h1 id="contact-title">お問い合わせ</h1>
-        </div>
+    <main class="animal-art-page">
+      <section class="gallery" id="animal-art" aria-label="LIVINGLYPH animal art">
+        <h1 class="gallery-title reveal" data-i18n="galleryTitle">ANIMAL ART</h1>
 
-        <div class="contact-lead reveal delay-1">
-          <p>Artworks, collaborations, design projects,<br />interviews and exhibition inquiries are welcome.</p>
-          <p>作品制作、コラボレーション、<br />デザイン案件、展示・取材等のご相談はこちらから。</p>
-        </div>
+        <article class="gallery-piece piece-left reveal">
+          <img
+            src="../assets/images/tatsunootoshigo.png"
+            alt="TATSUNOOTOSHIGO animal artwork"
+            loading="lazy"
+            data-parallax
+            data-speed="-0.018"
+          />
+        </article>
 
-        <form
-          class="contact-form reveal delay-1"
-          action="https://formspree.io/f/xgoddpwq"
-          method="POST"
-          data-contact-form
-        >
-          <input type="hidden" name="_subject" value="【LIVINGLYPH CONTACT】お問い合わせ" />
+        <article class="gallery-piece piece-right reveal">
+          <img
+            src="../assets/images/bengal-tiger.png"
+            alt="BENGAL TIGER animal artwork"
+            loading="lazy"
+            data-parallax
+            data-speed="0.016"
+          />
+        </article>
 
-          <div class="form-field">
-            <label for="name">お名前</label>
-            <input id="name" name="name" type="text" autocomplete="name" required />
-          </div>
+        <article class="gallery-piece piece-left reveal">
+          <img
+            src="../assets/images/uroboros.png"
+            alt="UROBOROS animal artwork"
+            loading="lazy"
+            data-parallax
+            data-speed="-0.015"
+          />
+        </article>
 
-          <div class="form-field">
-            <label for="email">メールアドレス</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
-          </div>
-
-          <div class="form-field">
-            <label for="email-confirm">メールアドレス（確認）</label>
-            <input id="email-confirm" name="email_confirm" type="email" autocomplete="off" required />
-          </div>
-
-          <div class="form-field">
-            <label for="subject">件名</label>
-            <input id="subject" name="subject" type="text" required />
-          </div>
-
-          <div class="form-field">
-            <label for="message">お問い合わせ内容</label>
-            <textarea id="message" name="message" rows="8" required></textarea>
-          </div>
-
-          <label class="privacy-consent">
-            <input name="privacy_consent" type="checkbox" value="agreed" required />
-            <span>
-              <a href="../privacy-policy/">プライバシーポリシー</a>に同意する
-            </span>
-          </label>
-
-          <p class="contact-status" aria-live="polite" data-contact-status></p>
-
-          <button class="contact-submit" type="submit" data-submit-button>SEND MESSAGE</button>
-        </form>
+        <article class="gallery-piece piece-right reveal">
+          <img
+            src="../assets/images/coming-soon.png"
+            alt="COMING SOON animal artwork"
+            loading="lazy"
+            data-parallax
+            data-speed="0.014"
+          />
+        </article>
       </section>
     </main>
 

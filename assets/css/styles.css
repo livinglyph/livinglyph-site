@@ -665,6 +665,10 @@ a {
   padding: clamp(4.2rem, 7vw, 6.4rem) clamp(1.4rem, 6vw, 6rem) clamp(4.2rem, 7vw, 6.4rem);
 }
 
+.animal-art-page {
+  padding-top: 86.88px;
+}
+
 .gallery-title {
   margin: 0;
   color: rgba(246, 243, 238, 0.86);
@@ -2837,6 +2841,7 @@ a {
   --works-gutter: clamp(1.5rem, 5vw, 4rem);
   --works-ease: cubic-bezier(0.22, 1, 0.36, 1);
   overflow-x: hidden;
+  padding-top: 86.88px;
   background: var(--works-bg);
   color: var(--works-text);
   font-family: var(--a1-mincho);
@@ -2887,7 +2892,7 @@ a {
 }
 
 .works-page .process {
-  padding: clamp(6.8rem, 9vw, 8.8rem) var(--works-gutter) clamp(4.703rem, 7vw, 7.25rem);
+  padding: clamp(4.2rem, 7vw, 6.4rem) var(--works-gutter) clamp(4.703rem, 7vw, 7.25rem);
 }
 
 .works-gallery,
