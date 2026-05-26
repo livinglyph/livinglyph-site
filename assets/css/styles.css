@@ -3348,6 +3348,10 @@ a {
   align-items: start;
 }
 
+.works-awards__layout + h2 {
+  margin-top: clamp(5.6rem, 9vw, 8rem);
+}
+
 .works-awards__figure {
   position: relative;
   display: grid;
