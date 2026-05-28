@@ -339,13 +339,192 @@ body.is-menu-open .back-to-top {
   opacity: 1;
 }
 
+.top-fixed-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: visible;
+  opacity: 1;
+  background: #000;
+  transition:
+    opacity 450ms var(--ease),
+    visibility 450ms var(--ease);
+}
+
+.top-fixed-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  opacity: 0;
+  transition: opacity 900ms var(--ease);
+}
+
+.top-fixed-bg.is-loaded .top-fixed-bg-video {
+  opacity: 0.32;
+}
+
+.top-fixed-bg-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.34);
+  background-image:
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.82)),
+    radial-gradient(rgba(255, 255, 255, 0.045) 22%, transparent 24%);
+  background-position:
+    center,
+    0 0;
+  background-size:
+    auto,
+    4px 4px;
+}
+
+body.is-profile-visible .top-fixed-bg {
+  visibility: hidden;
+  opacity: 0;
+}
+
+main#top {
+  position: relative;
+  z-index: 1;
+}
+
+.top-story-scene {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+
+.top-brand-hero,
 .brand-story {
   position: relative;
-  display: grid;
-  min-height: clamp(24rem, 48svh, 34rem);
-  place-items: center;
-  padding: clamp(4.2rem, 7vw, 6rem) clamp(1.4rem, 6vw, 6rem) clamp(3.4rem, 5.8vw, 5rem);
+  z-index: 2;
+}
+
+.top-brand-hero {
+  background: transparent;
+}
+
+.top-brand-hero__inner {
+  z-index: 2;
   text-align: center;
+}
+
+.top-brand-hero .top-brand-logo {
+  width: clamp(26.25rem, 42vw, 47.5rem);
+  max-width: 86vw;
+}
+
+.top-brand-hero__inner p {
+  max-width: min(100%, 42.5rem);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.brand-story {
+  display: grid;
+  gap: clamp(3rem, 5vw, 4.5rem);
+  place-items: center;
+  padding: clamp(5.8rem, 9vw, 8rem) clamp(1.4rem, 7vw, 7rem) clamp(6rem, 10vw, 8.75rem);
+  background: transparent;
+  text-align: center;
+}
+
+.brand-story-heading {
+  margin: 0;
+  color: rgba(246, 243, 238, 0.94);
+  font-family: var(--latin-serif);
+  font-size: clamp(1.05rem, 1.5vw, 1.32rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+}
+
+.brand-story-link {
+  position: relative;
+  display: block;
+  width: min(100%, 70rem);
+  margin-inline: auto;
+  overflow: hidden;
+  color: var(--white);
+}
+
+.brand-story-thumb {
+  width: 100%;
+  opacity: 0.82;
+  transition:
+    opacity 420ms var(--ease),
+    transform 900ms var(--ease);
+}
+
+.brand-story-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1rem;
+  pointer-events: none;
+}
+
+.brand-story-play-icon {
+  position: relative;
+  display: grid;
+  width: clamp(3.8rem, 6vw, 4.8rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(246, 243, 238, 0.78);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.24);
+  transition:
+    border-color 360ms var(--ease),
+    background-color 360ms var(--ease),
+    transform 360ms var(--ease);
+}
+
+.brand-story-play-icon::before {
+  width: 0;
+  height: 0;
+  margin-left: 0.22rem;
+  border-top: 0.48rem solid transparent;
+  border-bottom: 0.48rem solid transparent;
+  border-left: 0.72rem solid rgba(246, 243, 238, 0.94);
+  content: "";
+}
+
+.brand-story-link:hover,
+.brand-story-link:focus-visible {
+  outline: 0;
+}
+
+.brand-story-link:hover .brand-story-thumb,
+.brand-story-link:focus-visible .brand-story-thumb {
+  opacity: 0.95;
+  transform: scale(1.012);
+}
+
+.brand-story-link:hover .brand-story-play-icon,
+.brand-story-link:focus-visible .brand-story-play-icon {
+  border-color: rgba(246, 243, 238, 0.95);
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.04);
+}
+
+.top-actions,
+.brand-story {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+.profile-section,
+.site-footer {
+  position: relative;
+  z-index: 2;
+  background: #000;
 }
 
 .story-intro {
@@ -378,7 +557,7 @@ body.is-menu-open .back-to-top {
   position: relative;
   overflow: hidden;
   padding: clamp(4.8rem, 8vw, 7.2rem) clamp(1.4rem, 7vw, 7rem);
-  background: var(--black);
+  background: transparent;
 }
 
 .top-actions__inner {
@@ -673,6 +852,21 @@ body.is-menu-open .back-to-top {
 
 .profile-portrait {
   margin: 0;
+}
+
+.profile-image-wrap {
+  opacity: 0;
+  transform: translate3d(3rem, 0, 0);
+  transition:
+    opacity 980ms var(--ease),
+    transform 1180ms var(--ease);
+  will-change: opacity, transform;
+}
+
+.profile-image-wrap.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
 }
 
 .profile-portrait img {
@@ -1651,6 +1845,12 @@ body.is-menu-open .back-to-top {
     transform: none;
   }
 
+  .profile-image-wrap {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .rise-content {
     opacity: 1;
     transform: none;
@@ -2061,6 +2261,10 @@ body.is-menu-open .back-to-top {
     min-height: clamp(24rem, 68svh, 42rem);
   }
 
+  .top-brand-hero {
+    min-height: 100svh;
+  }
+
   .subpage-main {
     padding-top: clamp(8.2rem, 24vw, 10rem);
     padding-inline: clamp(1.2rem, 5vw, 2rem);
@@ -2127,10 +2331,14 @@ body.is-menu-open .back-to-top {
     width: min(62vw, 17rem);
   }
 
+  .top-brand-hero .top-brand-logo {
+    width: min(88vw, 26.25rem);
+  }
+
   .brand-story {
-    min-height: clamp(25rem, 62svh, 35rem);
+    gap: clamp(2.25rem, 8vw, 3rem);
     padding-top: clamp(4.8rem, 12vw, 6.2rem);
-    padding-bottom: clamp(1.4rem, 4vw, 2.2rem);
+    padding-bottom: clamp(5.5rem, 15vw, 6.8rem);
   }
 
   .story-intro {
@@ -2372,6 +2580,40 @@ body.is-menu-open .back-to-top {
   }
 }
 
+@media (max-width: 768px) {
+  .hero-video::before,
+  .hero-video::after {
+    position: absolute;
+    pointer-events: none;
+    content: "";
+  }
+
+  .hero-video::before {
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(circle at 50% 48%, rgba(0, 0, 0, 0) 38%, rgba(0, 0, 0, 0.24) 100%);
+  }
+
+  .hero-video::after {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    height: 26%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.42) 50%,
+      rgba(0, 0, 0, 0.72) 100%
+    );
+  }
+
+  .hero-video video {
+    position: relative;
+    z-index: 0;
+  }
+}
+
 @media (max-width: 480px) {
   .site-nav {
     gap: 0;
@@ -2447,10 +2689,13 @@ body.is-menu-open .back-to-top {
     object-fit: contain;
   }
 
+  .top-brand-hero {
+    min-height: 100svh;
+  }
+
   .brand-story {
-    min-height: clamp(24.5rem, 64svh, 34rem);
     padding-top: clamp(4.4rem, 14vw, 5.6rem);
-    padding-bottom: clamp(1.25rem, 4.6vw, 2rem);
+    padding-bottom: clamp(5.4rem, 18vw, 6.8rem);
   }
 
   .story-intro {

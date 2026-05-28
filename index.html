@@ -27,7 +27,7 @@
     />
     <link rel="preload" href="./assets/video/livinglyph.mp4" as="video" type="video/mp4" />
     <link rel="icon" href="assets/images/livinglyph-logo.png" type="image/png" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=20260528service8" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260528fixedhero1" />
   </head>
   <body>
     <div class="site-noise" aria-hidden="true"></div>
@@ -88,29 +88,46 @@
       </nav>
     </header>
 
-    <main id="top">
-      <section class="opening" aria-label="LIVINGLYPH main visual">
-        <div class="hero-video">
-          <video autoplay muted loop playsinline preload="auto" aria-label="LIVINGLYPH main visual" data-hero-video>
-            <source src="./assets/video/livinglyph.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <h1 class="sr-only">LIVINGLYPH</h1>
-      </section>
+    <div class="top-fixed-bg" aria-hidden="true">
+      <video class="top-fixed-bg-video" autoplay muted loop playsinline preload="auto" data-hero-video>
+        <source src="./assets/video/livinglyph.mp4" type="video/mp4" />
+      </video>
+      <div class="top-fixed-bg-overlay"></div>
+    </div>
 
-      <section class="brand-story" id="brand-story">
-        <div class="story-intro reveal">
-          <img src="assets/images/livinglyph-logo.png" alt="LIVINGLYPH" />
-          <p data-i18n-html="storyIntro">
-            LIVINGLYPH（リビングリフ）は、<br />
-            “Living（生命）”と“Glyph（文字・記号）”を組み合わせた造語。<br />
-            情報を伝えるための記号として消費されてきた文字を、<br />
-            意味から解放し、余白を与えることで、<br />
-            再び“生命”を宿らせることをコンセプトとした<br />
-            アートプロジェクト。
-          </p>
-        </div>
-      </section>
+    <main id="top">
+      <div class="top-story-scene">
+        <section class="opening top-brand-hero" aria-label="LIVINGLYPH brand concept">
+          <div class="story-intro top-brand-hero__inner reveal">
+            <img class="top-brand-logo" src="assets/images/livinglyph-logo.png" alt="LIVINGLYPH" />
+            <p data-i18n-html="storyIntro">
+              LIVINGLYPH（リビングリフ）は、<br />
+              “Living（生命）”と“Glyph（文字・記号）”を組み合わせた造語。<br />
+              情報を伝えるための記号として消費されてきた文字を、<br />
+              意味から解放し、余白を与えることで、<br />
+              再び“生命”を宿らせることをコンセプトとした<br />
+              アートプロジェクト。
+            </p>
+          </div>
+          <h1 class="sr-only">LIVINGLYPH</h1>
+        </section>
+
+        <section class="brand-story" id="brand-story">
+          <h2 class="brand-story-heading reveal">BRAND STORY</h2>
+          <a
+            class="brand-story-link reveal delay-1"
+            href="https://youtu.be/7xU5bny5P4A?si=e6SElSvP94b4GXyd"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="BRAND STORYをYouTubeで見る"
+          >
+            <img class="brand-story-thumb" src="assets/images/promotion@2x.png" alt="LIVINGLYPH brand story thumbnail" loading="lazy" />
+            <span class="brand-story-play" aria-hidden="true">
+              <span class="brand-story-play-icon"></span>
+            </span>
+          </a>
+        </section>
+      </div>
 
       <section class="top-actions" aria-labelledby="top-actions-title">
         <div class="top-actions__inner reveal">
@@ -140,7 +157,7 @@
             <h2 id="profile-title">PROFILE</h2>
             <div class="profile-name">
               <p>松尾 直樹</p>
-              <p>Typography Artist / Graphic Designer</p>
+              <p>Graphic Designer / Typographic Artist</p>
               <p>タイポグラフィアーティスト / グラフィックデザイナー</p>
             </div>
             <div class="profile-body">
@@ -163,7 +180,7 @@
               <a class="profile-portfolio-button" href="/contact/">PORTFOLIO REQUEST</a>
             </div>
           </div>
-          <figure class="profile-portrait">
+          <figure class="profile-portrait profile-image-wrap">
             <img src="assets/images/profile@2x.png" alt="松尾直樹プロフィール写真" loading="lazy" />
           </figure>
         </div>
@@ -175,6 +192,6 @@
       <p data-i18n="footerCopy">© 2026 LIVINGLYPH. All Rights Reserved.</p>
     </footer>
 
-    <script src="assets/js/app.js?v=20260528nav4" defer></script>
+    <script src="assets/js/app.js?v=20260528fixedhero1" defer></script>
   </body>
 </html>

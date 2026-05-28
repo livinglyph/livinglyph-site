@@ -2,7 +2,9 @@ const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const siteNav = document.querySelector("[data-site-nav]");
 const heroVideo = document.querySelector("[data-hero-video]");
+const profileSection = document.querySelector(".profile-section");
 const revealItems = [...document.querySelectorAll(".reveal")];
+const profileImageItems = [...document.querySelectorAll(".profile-image-wrap")];
 const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
 const riseTextItems = [
   ...document.querySelectorAll(
@@ -137,7 +139,7 @@ function clamp(value, min, max) {
 }
 
 function markHeroVideoReady() {
-  heroVideo?.closest(".hero-video")?.classList.add("is-loaded");
+  heroVideo?.closest(".hero-video, .top-fixed-bg")?.classList.add("is-loaded");
 }
 
 function setupHeroVideo() {
@@ -719,6 +721,48 @@ revealItems.forEach((item) => {
     revealObserver.observe(item);
   }
 });
+
+const profileImageObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        profileImageObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    root: null,
+    threshold: 0.18,
+    rootMargin: "0px 0px -10% 0px",
+  },
+);
+
+profileImageItems.forEach((item) => {
+  if (reduceMotion.matches) {
+    item.classList.add("is-visible");
+    return;
+  }
+
+  profileImageObserver.observe(item);
+});
+
+if (profileSection) {
+  const fixedBgObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        document.body.classList.toggle("is-profile-visible", entry.isIntersecting);
+      });
+    },
+    {
+      root: null,
+      threshold: 0.05,
+      rootMargin: "-86% 0px 0px 0px",
+    },
+  );
+
+  fixedBgObserver.observe(profileSection);
+}
 
 let ticking = false;
 let headerScrolled = false;
