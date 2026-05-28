@@ -644,6 +644,27 @@ function setMenuOpen(isOpen) {
   menuToggle?.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
 }
 
+function setupBackToTop() {
+  if (document.querySelector(".back-to-top")) {
+    return;
+  }
+
+  const button = document.createElement("button");
+  button.className = "back-to-top";
+  button.type = "button";
+  button.setAttribute("aria-label", "Back to top");
+  button.innerHTML = '<span class="back-to-top__arrow" aria-hidden="true">↑</span><span>BACK TO TOP</span>';
+
+  button.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion.matches ? "auto" : "smooth",
+    });
+  });
+
+  document.body.appendChild(button);
+}
+
 menuToggle?.addEventListener("click", () => {
   setMenuOpen(!document.body.classList.contains("is-menu-open"));
 });
@@ -668,6 +689,7 @@ languageButtons.forEach((button) => {
 });
 
 applyLanguage(getSavedLanguage(), false);
+setupBackToTop();
 setupHeroVideo();
 setupContactForm();
 setupSamuraiMarquees();
