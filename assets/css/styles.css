@@ -109,10 +109,6 @@ a {
   background: rgba(0, 0, 0, 0.88);
 }
 
-.service-body .site-header {
-  position: absolute;
-}
-
 .header-logo {
   width: clamp(7.5rem, 12vw, 12rem);
 }
