@@ -653,7 +653,8 @@ function setupBackToTop() {
   button.className = "back-to-top";
   button.type = "button";
   button.setAttribute("aria-label", "Back to top");
-  button.innerHTML = '<span class="back-to-top__arrow" aria-hidden="true">↑</span><span>BACK TO TOP</span>';
+  button.innerHTML =
+    '<span class="back-to-top__arrow" aria-hidden="true">↑</span><span class="back-to-top__text">BACK TO TOP</span>';
 
   button.addEventListener("click", () => {
     window.scrollTo({
@@ -721,6 +722,7 @@ revealItems.forEach((item) => {
 
 let ticking = false;
 let headerScrolled = false;
+let scrollIdleTimer;
 
 function updateHeader() {
   const shouldBeScrolled = window.scrollY > 24;
@@ -770,10 +772,11 @@ function requestParallaxUpdate() {
 
 function onScroll() {
   updateHeader();
-
-  if (document.body.classList.contains("is-menu-open")) {
-    setMenuOpen(false);
-  }
+  document.body.classList.add("is-scrolling");
+  window.clearTimeout(scrollIdleTimer);
+  scrollIdleTimer = window.setTimeout(() => {
+    document.body.classList.remove("is-scrolling");
+  }, 420);
 
   if (parallaxMedia.matches && !reduceMotion.matches) {
     requestParallaxUpdate();
