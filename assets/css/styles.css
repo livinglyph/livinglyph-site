@@ -373,18 +373,16 @@ body.is-menu-open .back-to-top {
   background-color: rgba(0, 0, 0, 0.34);
   background-image:
     radial-gradient(circle at center, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.82)),
-    radial-gradient(rgba(255, 255, 255, 0.045) 22%, transparent 24%);
+    radial-gradient(rgba(255, 255, 255, 0.045) 20%, transparent 22%),
+    radial-gradient(rgba(255, 255, 255, 0.032) 20%, transparent 22%);
   background-position:
     center,
-    0 0;
+    0 0,
+    3px 3px;
   background-size:
     auto,
-    4px 4px;
-}
-
-body.is-profile-visible .top-fixed-bg {
-  visibility: hidden;
-  opacity: 0;
+    6px 6px,
+    6px 6px;
 }
 
 main#top {
@@ -520,11 +518,16 @@ main#top {
   background: transparent;
 }
 
-.profile-section,
 .site-footer {
   position: relative;
   z-index: 2;
   background: #000;
+}
+
+.profile-section {
+  position: relative;
+  z-index: 2;
+  background: transparent;
 }
 
 .story-intro {
@@ -755,7 +758,7 @@ main#top {
   position: relative;
   overflow: hidden;
   padding: clamp(5rem, 8vw, 7.6rem) clamp(1.4rem, 7vw, 7rem) clamp(5.4rem, 8.6vw, 8rem);
-  background: var(--black);
+  background: transparent;
 }
 
 .profile-inner {
