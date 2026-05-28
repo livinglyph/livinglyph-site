@@ -25,8 +25,8 @@ const translations = {
     navStoryCaption: "LIVINGLYPHについて",
     navGallery: "GALLERY",
     navGalleryCaption: "作品を見る",
-    navWorks: "WORKS",
-    navWorksCaption: "制作実績",
+    navWorks: "SERVICE",
+    navWorksCaption: "サービス",
     navAnimal: "ANIMAL ART",
     navAnimalCaption: "動物アート",
     navSamurai: "SAMURAI ART",
@@ -51,20 +51,21 @@ const translations = {
     manifestoP10: "自由になった文字たちが、あなたの心に自由と遊びを届ける。",
     processHeadingEn: "PROCESS",
     processHeadingJa: "制作プロセス",
-    processHeadingNote: "（似顔絵の場合）",
+    processHeadingNote: "",
     processStep1Title: "言葉と写真を決める",
-    processStep2Title: "似顔絵制作",
-    processStep2Caption: "顔の骨格に合わせ<br />文字を一文字ずつ構成し、<br />作品として仕上げていく。",
-    processStep3Title: "微調整をして完成",
-    processStep3Caption: "文字の構成ができたら、<br />微調整をして完成。",
+    processStep1Caption: "名前、活動名、記念日、メッセージ、参考写真を確認します。",
+    processStep2Title: "文字で構成する",
+    processStep2Caption: "顔の骨格や印象に合わせて、文字を一文字ずつ配置します。",
+    processStep3Title: "仕上げ・展開",
+    processStep3Caption: "作品として整え、Tシャツ・ポスター・SNSアイコンなどに展開します。",
     galleryTitle: "ANIMAL ART",
     samuraiConceptTitle: "SAMURAI × TYPOGRAPHY × ART",
     samuraiConceptP1: "侍の兜は、時代と共に武将たちの威厳や個性を表現する存在へと変化していきました。",
     samuraiConceptP2: "LIVINGLYPHでは、その思想をヒントに、タイポグラフィと日本の侍魂を融合。",
     samuraiConceptP3: "文字を通して自己表現を行い、日本の文化を世界に伝えるサムライアートを発信してゆく。",
     samuraiCraftCaption: "作品名の頭文字を頭の文字で兜や甲冑へ。",
-    worksKicker: "WORKS",
-    worksTitle: "WORKS",
+    worksKicker: "SERVICE",
+    worksTitle: "SERVICE",
     worksProcessTitle: "制作プロセス",
     worksProcessNote: "（似顔絵の場合）",
     worksStep1Title: "言葉と写真を決める",
@@ -79,8 +80,8 @@ const translations = {
     navStoryCaption: "About LIVINGLYPH",
     navGallery: "GALLERY",
     navGalleryCaption: "View Works",
-    navWorks: "WORKS",
-    navWorksCaption: "Works",
+    navWorks: "SERVICE",
+    navWorksCaption: "Service",
     navAnimal: "ANIMAL ART",
     navAnimalCaption: "Animal Art",
     navSamurai: "SAMURAI ART",
@@ -105,20 +106,21 @@ const translations = {
     manifestoP10: "Freed letters bring freedom and play back into the heart.",
     processHeadingEn: "PROCESS",
     processHeadingJa: "Creative Process",
-    processHeadingNote: "(Portrait example)",
+    processHeadingNote: "",
     processStep1Title: "Choose Words and Photo",
-    processStep2Title: "Compose the Portrait",
-    processStep2Caption: "Letters are placed one by one,<br />following the structure of the face,<br />until the work begins to take form.",
-    processStep3Title: "Refine and Complete",
-    processStep3Caption: "Once the glyph structure is formed,<br />the final details are quietly refined.",
+    processStep1Caption: "Choose the name, words, message, anniversary, and reference photo for the artwork.",
+    processStep2Title: "Compose with Letters",
+    processStep2Caption: "Letters are placed one by one to follow the structure and impression of the face, person, or symbol.",
+    processStep3Title: "Refine and Apply",
+    processStep3Caption: "Final details are refined and production data is prepared.<br />The artwork can be applied to T-shirts, posters, framed art, and SNS icons.",
     galleryTitle: "ANIMAL ART",
     samuraiConceptTitle: "SAMURAI × TYPOGRAPHY × ART",
     samuraiConceptP1: "Samurai helmets evolved into symbols of a warrior's dignity and individuality.",
     samuraiConceptP2: "Inspired by that spirit, LIVINGLYPH fuses typography with the soul of Japanese samurai.",
     samuraiConceptP3: "Through letters, we create samurai art that expresses identity and shares Japanese culture with the world.",
     samuraiCraftCaption: "Initial letters are shaped into samurai helmets and armor.",
-    worksKicker: "WORKS",
-    worksTitle: "WORKS",
+    worksKicker: "SERVICE",
+    worksTitle: "SERVICE",
     worksProcessTitle: "Creative Process",
     worksProcessNote: "(Portrait example)",
     worksStep1Title: "Choose Words and Photo",
@@ -428,7 +430,7 @@ function setupWorksMovies() {
   }
 
   const track = movieRoot.querySelector("[data-works-movie-track]");
-  const slides = [...movieRoot.querySelectorAll("[data-works-movie-slide]")];
+  let slides = [...movieRoot.querySelectorAll("[data-works-movie-slide]")];
   const prevButton = movieRoot.querySelector("[data-works-movie-prev]");
   const nextButton = movieRoot.querySelector("[data-works-movie-next]");
 
@@ -438,7 +440,14 @@ function setupWorksMovies() {
 
   let currentIndex = 0;
 
-  track.style.setProperty("--works-movie-count", String(slides.length));
+  function refreshMovieCount() {
+    track.style.setProperty("--works-movie-count", String(slides.length));
+    movieRoot.hidden = slides.length === 0;
+    prevButton?.toggleAttribute("hidden", slides.length <= 1);
+    nextButton?.toggleAttribute("hidden", slides.length <= 1);
+  }
+
+  refreshMovieCount();
 
   function stopVideo(video) {
     video.pause();
@@ -487,6 +496,10 @@ function setupWorksMovies() {
   }
 
   function goToSlide(nextIndex) {
+    if (!slides.length) {
+      return;
+    }
+
     currentIndex = (nextIndex + slides.length) % slides.length;
     track.style.setProperty("--works-movie-index", String(currentIndex));
     syncActiveVideo();
@@ -504,14 +517,24 @@ function setupWorksMovies() {
       return;
     }
 
-    const fallback = slide.querySelector(".works-movie-slide__fallback");
+    function removeErroredSlide() {
+      const removedIndex = slides.indexOf(slide);
 
-    function setVideoErrorState(hasError) {
-      slide.classList.toggle("has-video-error", hasError);
-
-      if (fallback) {
-        fallback.hidden = !hasError;
+      if (removedIndex === -1) {
+        return;
       }
+
+      slide.remove();
+      slides = slides.filter((item) => item !== slide);
+
+      if (!slides.length) {
+        refreshMovieCount();
+        return;
+      }
+
+      currentIndex = Math.min(currentIndex, slides.length - 1);
+      refreshMovieCount();
+      goToSlide(currentIndex);
     }
 
     video.muted = true;
@@ -523,11 +546,10 @@ function setupWorksMovies() {
       stopVideo(video);
     }
 
-    video.addEventListener("error", () => setVideoErrorState(true));
-    video.addEventListener("loadedmetadata", () => setVideoErrorState(false));
+    video.addEventListener("error", removeErroredSlide);
 
     video.addEventListener("play", () => {
-      if (index !== currentIndex) {
+      if (slides.indexOf(slide) !== currentIndex) {
         stopVideo(video);
       }
     });
