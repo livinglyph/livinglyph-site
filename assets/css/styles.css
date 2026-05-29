@@ -4,6 +4,8 @@
   --soft: rgba(246, 243, 238, 0.72);
   --muted: rgba(246, 243, 238, 0.48);
   --faint: rgba(246, 243, 238, 0.12);
+  --glass-bg: rgba(246, 243, 238, 0.1);
+  --glass-bg-hover: rgba(246, 243, 238, 0.16);
   --process-label-width: 17.4rem;
   --ease: cubic-bezier(0.19, 1, 0.22, 1);
   --a1-mincho: "A1明朝 M JIS2004 AP", "A1明朝 R JIS2004 AP", "A1明朝", "秀英明朝 L JIS2004",
@@ -25,15 +27,74 @@ html {
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   min-width: 320px;
   margin: 0;
   overflow-x: hidden;
-  background: var(--black);
+  background: transparent;
   color: var(--white);
   font-family: var(--sans);
   letter-spacing: 0;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  content: "";
+  opacity: 0.85;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(42, 42, 42, 0.55), transparent 34%),
+    radial-gradient(circle at 80% 30%, rgba(32, 32, 32, 0.5), transparent 38%),
+    radial-gradient(circle at 50% 85%, rgba(24, 24, 24, 0.45), transparent 42%),
+    linear-gradient(
+      120deg,
+      #000000 0%,
+      #0a0a0a 24%,
+      #222222 46%,
+      #050505 68%,
+      #2a2a2a 86%,
+      #000000 100%
+    );
+  background-position:
+    0% 50%,
+    100% 50%,
+    50% 100%,
+    0% 50%;
+  background-size:
+    180% 180%,
+    200% 200%,
+    220% 220%,
+    200% 200%;
+  animation: livinglyphBlackGradient 34s ease-in-out infinite;
+}
+
+body:has(.contact-section)::before,
+body:has(.samurai-page)::before {
+  opacity: 0.62;
+}
+
+body:has(.works-page)::before {
+  opacity: 0.72;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    opacity: 0.68;
+  }
+
+  body:has(.contact-section)::before,
+  body:has(.samurai-page)::before {
+    opacity: 0.5;
+  }
+
+  body:has(.works-page)::before {
+    opacity: 0.58;
+  }
 }
 
 body.is-menu-open {
@@ -76,12 +137,22 @@ a {
   inset: 0;
   z-index: 30;
   pointer-events: none;
-  opacity: 0.18;
+  opacity: 0.07;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
   background-size: 8px 8px;
   mix-blend-mode: screen;
+}
+
+body:has(.works-page) .site-noise,
+body:has(.contact-section) .site-noise,
+body:has(.samurai-page) .site-noise {
+  opacity: 0.04;
+}
+
+body:has(.animal-art-page) .site-noise {
+  opacity: 0.08;
 }
 
 .site-header {
@@ -347,7 +418,7 @@ body.is-menu-open .back-to-top {
   pointer-events: none;
   visibility: visible;
   opacity: 1;
-  background: #000;
+  background: transparent;
   transition:
     opacity 450ms var(--ease),
     visibility 450ms var(--ease);
@@ -654,8 +725,8 @@ main#top {
   z-index: -1;
   content: "";
   background:
-    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
   background-size: 10px 10px;
 }
 
@@ -1138,10 +1209,10 @@ main#top {
   z-index: 1;
   pointer-events: none;
   content: "";
-  opacity: 0.11;
+  opacity: 0.075;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.052) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.042) 1px, transparent 1px);
   background-size: 7px 7px;
   mix-blend-mode: screen;
   transition: opacity 800ms var(--ease);
@@ -1204,7 +1275,7 @@ main#top {
   --samurai-ghost: rgba(255, 255, 255, 0.12);
   --samurai-line: rgba(255, 255, 255, 0.15);
   overflow: hidden;
-  background: #000;
+  background: rgba(0, 0, 0, 0.94);
   color: #fff;
 }
 
@@ -1565,10 +1636,38 @@ main#top {
   }
 }
 
+@keyframes livinglyphBlackGradient {
+  0% {
+    background-position:
+      0% 50%,
+      100% 50%,
+      50% 100%,
+      0% 50%;
+  }
+
+  50% {
+    background-position:
+      100% 50%,
+      0% 50%,
+      50% 0%,
+      100% 50%;
+  }
+
+  100% {
+    background-position:
+      0% 50%,
+      100% 50%,
+      50% 100%,
+      0% 50%;
+  }
+}
+
 .subpage-main {
+  position: relative;
+  z-index: 1;
   min-height: 100svh;
   padding: clamp(8.8rem, 12vw, 11.5rem) clamp(1.4rem, 6vw, 6rem) clamp(3.8rem, 6vw, 5.5rem);
-  background: var(--black);
+  background: rgba(0, 0, 0, 0.92);
 }
 
 .contact-section,
@@ -1832,6 +1931,10 @@ main#top {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  body::before {
+    animation: none;
   }
 
   *,
@@ -2876,7 +2979,7 @@ main#top {
   --samurai-muted: rgba(255, 255, 255, 0.62);
   --samurai-faint: rgba(255, 255, 255, 0.32);
   overflow-x: hidden;
-  background: #000;
+  background: rgba(0, 0, 0, 0.94);
   color: #fff;
 }
 
@@ -3405,7 +3508,7 @@ main#top {
 
 /* WORKS page */
 .works-page {
-  --works-bg: #050505;
+  --works-bg: rgba(5, 5, 5, 0.92);
   --works-display: var(--a1-mincho);
   --works-text: rgba(246, 243, 238, 0.9);
   --works-muted: rgba(246, 243, 238, 0.64);
@@ -4641,6 +4744,73 @@ main#top {
 .service-final > .service-cta {
   width: min(100%, 21rem);
   margin-top: clamp(2rem, 3vw, 2.8rem);
+}
+
+.top-actions__card,
+.profile-portfolio-button,
+.service-cta,
+.contact-submit {
+  border: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
+  box-shadow:
+    0 0.625rem 1.75rem rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  transition:
+    background-color 280ms var(--ease),
+    box-shadow 280ms var(--ease),
+    color 280ms var(--ease),
+    opacity 280ms var(--ease),
+    transform 280ms var(--ease);
+}
+
+.top-actions__card {
+  border-radius: 1.25rem;
+}
+
+.profile-portfolio-button,
+.service-cta,
+.contact-submit {
+  border-radius: 1.5rem;
+}
+
+.top-actions__card:hover,
+.top-actions__card:focus-visible,
+.profile-portfolio-button:hover,
+.profile-portfolio-button:focus-visible,
+.service-cta:hover,
+.service-cta:focus-visible,
+.contact-submit:hover,
+.contact-submit:focus-visible {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+  box-shadow:
+    0 0.875rem 2.125rem rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  color: #fff;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.contact-submit {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.07));
+  box-shadow:
+    0 0.75rem 2rem rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.top-actions__card:focus-visible,
+.profile-portfolio-button:focus-visible,
+.service-cta:focus-visible,
+.contact-submit:focus-visible {
+  outline: 1px solid rgba(246, 243, 238, 0.55);
+  outline-offset: 4px;
 }
 
 .works-page + .site-footer {
