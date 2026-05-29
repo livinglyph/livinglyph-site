@@ -299,8 +299,9 @@ body:has(.animal-art-page) .site-header {
   align-items: center;
   gap: 0.42rem;
   padding: 0.78rem 0.46rem;
-  border: 0;
-  background: rgba(0, 0, 0, 0.68);
+  border: none;
+  background: rgba(0, 0, 0, 0.58);
+  box-shadow: none;
   color: rgba(246, 243, 238, 0.9);
   font-family: var(--sans);
   font-size: 0.72rem;
@@ -329,7 +330,7 @@ body:has(.animal-art-page) .site-header {
 
 .back-to-top:hover,
 .back-to-top:focus-visible {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
   opacity: 1;
   outline: 0;
@@ -668,20 +669,25 @@ main#top {
   min-height: clamp(7rem, 8.5vw, 8.6rem);
   align-content: start;
   gap: 0.58rem;
-  padding: clamp(1rem, 1.35vw, 1.25rem);
-  border: 1px solid rgba(246, 243, 238, 0.16);
-  background: rgba(255, 255, 255, 0.012);
+  padding: clamp(1.15rem, 1.65vw, 1.45rem);
+  border: 1px solid rgba(246, 243, 238, 0.22);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.18);
   color: inherit;
   transition:
+    background-color 360ms var(--ease),
     border-color 360ms var(--ease),
-    opacity 360ms var(--ease);
+    opacity 360ms var(--ease),
+    transform 360ms var(--ease);
 }
 
 .top-actions__card:hover,
 .top-actions__card:focus-visible {
-  border-color: rgba(246, 243, 238, 0.42);
-  opacity: 0.84;
+  border-color: rgba(246, 243, 238, 0.5);
+  background: rgba(255, 255, 255, 0.045);
+  opacity: 1;
   outline: 0;
+  transform: translateY(-2px);
 }
 
 .top-actions__card h3 {
@@ -4809,15 +4815,12 @@ body:has(.policy-section) .subpage-main {
   margin-top: clamp(2rem, 3vw, 2.8rem);
 }
 
-.top-actions__card,
 .profile-portfolio,
 .service-card,
 .service-plan-card,
 .service-plan-schedule,
 .service-delivery-grid article,
 .service-project-meta,
-.service-final > p,
-.service-final__note,
 .contact-lead p:last-child {
   border: 1px solid rgba(246, 243, 238, 0.18);
   border-radius: 18px;
@@ -4829,7 +4832,6 @@ body:has(.policy-section) .subpage-main {
   backdrop-filter: blur(10px);
 }
 
-.top-actions__card,
 .profile-portfolio,
 .service-card,
 .service-plan-card,
@@ -4837,8 +4839,6 @@ body:has(.policy-section) .subpage-main {
   padding: clamp(1.75rem, 4vw, 3rem);
 }
 
-.service-final > p,
-.service-final__note,
 .contact-lead p:last-child {
   padding: clamp(1.2rem, 2.2vw, 1.7rem);
 }
@@ -4918,10 +4918,14 @@ body:has(.policy-section) .subpage-main {
     inset 0 -1px 0 rgba(255, 255, 255, 0.05);
 }
 
-.top-actions__card:focus-visible,
 .profile-portfolio-button:focus-visible,
 .service-cta:focus-visible,
 .contact-submit:focus-visible {
+  outline: 1px solid rgba(246, 243, 238, 0.55);
+  outline-offset: 4px;
+}
+
+.top-actions__card:focus-visible {
   outline: 1px solid rgba(246, 243, 238, 0.55);
   outline-offset: 4px;
 }
@@ -5009,15 +5013,12 @@ body:has(.policy-section) .subpage-main {
 }
 
 @media (max-width: 768px) {
-  .top-actions__card,
   .profile-portfolio,
   .service-card,
   .service-plan-card,
   .service-plan-schedule,
   .service-delivery-grid article,
   .service-project-meta,
-  .service-final > p,
-  .service-final__note,
   .contact-lead p:last-child,
   .contact-form,
   .works-page .process-label {
@@ -5027,7 +5028,6 @@ body:has(.policy-section) .subpage-main {
       inset 0 1px 0 rgba(255, 255, 255, 0.07);
   }
 
-  .top-actions__card,
   .profile-portfolio,
   .service-card,
   .service-plan-card,
@@ -5035,10 +5035,13 @@ body:has(.policy-section) .subpage-main {
     padding: 1.5rem 1.25rem;
   }
 
-  .service-final > p,
-  .service-final__note,
   .contact-lead p:last-child {
     padding: 1.2rem;
+  }
+
+  .top-actions__card {
+    border-radius: 14px;
+    box-shadow: none;
   }
 
   .section-note {
