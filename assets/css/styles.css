@@ -300,7 +300,7 @@ body:has(.animal-art-page) .site-header {
   gap: 0.42rem;
   padding: 0.78rem 0.46rem;
   border: none;
-  background: rgba(0, 0, 0, 0.58);
+  background: transparent;
   box-shadow: none;
   color: rgba(246, 243, 238, 0.9);
   font-family: var(--sans);
@@ -330,7 +330,7 @@ body:has(.animal-art-page) .site-header {
 
 .back-to-top:hover,
 .back-to-top:focus-visible {
-  background: rgba(255, 255, 255, 0.06);
+  background: transparent;
   color: #fff;
   opacity: 1;
   outline: 0;
@@ -669,25 +669,20 @@ main#top {
   min-height: clamp(7rem, 8.5vw, 8.6rem);
   align-content: start;
   gap: 0.58rem;
-  padding: clamp(1.15rem, 1.65vw, 1.45rem);
-  border: 1px solid rgba(246, 243, 238, 0.22);
-  border-radius: 18px;
-  background: rgba(0, 0, 0, 0.18);
+  padding: clamp(1rem, 1.35vw, 1.25rem);
+  border: 1px solid rgba(246, 243, 238, 0.16);
+  background: rgba(255, 255, 255, 0.012);
   color: inherit;
   transition:
-    background-color 360ms var(--ease),
     border-color 360ms var(--ease),
-    opacity 360ms var(--ease),
-    transform 360ms var(--ease);
+    opacity 360ms var(--ease);
 }
 
 .top-actions__card:hover,
 .top-actions__card:focus-visible {
-  border-color: rgba(246, 243, 238, 0.5);
-  background: rgba(255, 255, 255, 0.045);
-  opacity: 1;
+  border-color: rgba(246, 243, 238, 0.42);
+  opacity: 0.84;
   outline: 0;
-  transform: translateY(-2px);
 }
 
 .top-actions__card h3 {
@@ -4458,7 +4453,7 @@ body:has(.policy-section) .subpage-main {
   width: 100%;
   height: auto;
   opacity: 1;
-  filter: drop-shadow(0 1.4rem 2.6rem rgba(0, 0, 0, 0.34));
+  filter: none;
   object-fit: contain;
 }
 
@@ -4854,18 +4849,6 @@ body:has(.policy-section) .subpage-main {
   backdrop-filter: blur(10px);
 }
 
-.works-gallery__portrait {
-  padding: clamp(0.7rem, 1.4vw, 1rem);
-  border: 1px solid rgba(246, 243, 238, 0.12);
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.28);
-  box-shadow:
-    0 1rem 3.4rem rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-}
-
 .profile-portfolio-button,
 .service-cta,
 .contact-submit {
@@ -5037,11 +5020,6 @@ body:has(.policy-section) .subpage-main {
 
   .contact-lead p:last-child {
     padding: 1.2rem;
-  }
-
-  .top-actions__card {
-    border-radius: 14px;
-    box-shadow: none;
   }
 
   .section-note {
