@@ -32,7 +32,7 @@ body {
   min-width: 320px;
   margin: 0;
   overflow-x: hidden;
-  background: transparent;
+  background: var(--black);
   color: var(--white);
   font-family: var(--sans);
   letter-spacing: 0;
@@ -43,57 +43,85 @@ body {
 body::before {
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: 0;
   pointer-events: none;
   content: "";
-  opacity: 0.85;
+  opacity: 1;
   background:
-    radial-gradient(circle at 20% 20%, rgba(42, 42, 42, 0.55), transparent 34%),
-    radial-gradient(circle at 80% 30%, rgba(32, 32, 32, 0.5), transparent 38%),
-    radial-gradient(circle at 50% 85%, rgba(24, 24, 24, 0.45), transparent 42%),
+    radial-gradient(circle at 18% 22%, rgba(70, 70, 70, 0.34), transparent 30%),
+    radial-gradient(circle at 82% 28%, rgba(54, 54, 54, 0.32), transparent 34%),
+    radial-gradient(circle at 48% 82%, rgba(42, 42, 42, 0.3), transparent 38%),
     linear-gradient(
       120deg,
       #000000 0%,
-      #0a0a0a 24%,
-      #222222 46%,
+      #080808 22%,
+      #1c1c1c 46%,
       #050505 68%,
-      #2a2a2a 86%,
+      #242424 86%,
       #000000 100%
     );
   background-position:
     0% 50%,
-    100% 50%,
+    100% 40%,
     50% 100%,
     0% 50%;
   background-size:
+    140% 140%,
+    160% 160%,
     180% 180%,
-    200% 200%,
-    220% 220%,
-    200% 200%;
-  animation: livinglyphBlackGradient 34s ease-in-out infinite;
+    180% 180%;
+  animation: livinglyphAmbientMotion 24s ease-in-out infinite;
 }
 
 body:has(.contact-section)::before,
 body:has(.samurai-page)::before {
-  opacity: 0.62;
+  opacity: 0.78;
 }
 
 body:has(.works-page)::before {
-  opacity: 0.72;
+  opacity: 0.88;
+}
+
+body.home-page::before,
+body.top-page::before {
+  z-index: 0;
+  opacity: 0.88;
+  background:
+    linear-gradient(
+      45deg,
+      #000000,
+      #111111,
+      #2a2a2a,
+      #080808,
+      #1c1c1c,
+      #000000
+    );
+  background-size: 400% 400%;
+  animation: livinglyphGradientShift 18s ease infinite;
+}
+
+body.home-page .site-noise,
+body.top-page .site-noise {
+  opacity: 0.012;
 }
 
 @media (max-width: 768px) {
   body::before {
-    opacity: 0.68;
+    opacity: 0.9;
   }
 
   body:has(.contact-section)::before,
   body:has(.samurai-page)::before {
-    opacity: 0.5;
+    opacity: 0.72;
   }
 
   body:has(.works-page)::before {
-    opacity: 0.58;
+    opacity: 0.78;
+  }
+
+  body.home-page::before,
+  body.top-page::before {
+    opacity: 0.82;
   }
 }
 
@@ -137,22 +165,33 @@ a {
   inset: 0;
   z-index: 30;
   pointer-events: none;
-  opacity: 0.07;
+  opacity: 0.035;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
   background-size: 8px 8px;
   mix-blend-mode: screen;
+}
+
+main,
+.site-header,
+.site-footer,
+.subpage-main,
+.works-page,
+.animal-art-page,
+.samurai-page {
+  position: relative;
+  z-index: 1;
 }
 
 body:has(.works-page) .site-noise,
 body:has(.contact-section) .site-noise,
 body:has(.samurai-page) .site-noise {
-  opacity: 0.04;
+  opacity: 0.012;
 }
 
 body:has(.animal-art-page) .site-noise {
-  opacity: 0.08;
+  opacity: 0.05;
 }
 
 .site-header {
@@ -725,8 +764,8 @@ main#top {
   z-index: -1;
   content: "";
   background:
-    linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px);
   background-size: 10px 10px;
 }
 
@@ -1659,6 +1698,46 @@ main#top {
       100% 50%,
       50% 100%,
       0% 50%;
+  }
+}
+
+@keyframes livinglyphAmbientMotion {
+  0% {
+    background-position:
+      0% 50%,
+      100% 40%,
+      50% 100%,
+      0% 50%;
+  }
+
+  50% {
+    background-position:
+      100% 45%,
+      0% 60%,
+      50% 0%,
+      100% 50%;
+  }
+
+  100% {
+    background-position:
+      0% 50%,
+      100% 40%,
+      50% 100%,
+      0% 50%;
+  }
+}
+
+@keyframes livinglyphGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
   }
 }
 
