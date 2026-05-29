@@ -48,66 +48,32 @@ body::before {
   content: "";
   opacity: 1;
   background:
-    radial-gradient(circle at 18% 22%, rgba(70, 70, 70, 0.34), transparent 30%),
-    radial-gradient(circle at 82% 28%, rgba(54, 54, 54, 0.32), transparent 34%),
-    radial-gradient(circle at 48% 82%, rgba(42, 42, 42, 0.3), transparent 38%),
     linear-gradient(
-      120deg,
-      #000000 0%,
-      #080808 22%,
-      #1c1c1c 46%,
-      #050505 68%,
-      #242424 86%,
-      #000000 100%
+      45deg,
+      #000000,
+      #141414,
+      #3a3a3a,
+      #080808,
+      #444444,
+      #1a1a1a,
+      #000000
     );
-  background-position:
-    0% 50%,
-    100% 40%,
-    50% 100%,
-    0% 50%;
-  background-size:
-    140% 140%,
-    160% 160%,
-    180% 180%,
-    180% 180%;
-  animation: livinglyphAmbientMotion 24s ease-in-out infinite;
+  background-size: 400% 400%;
+  animation: livinglyphGradientShift 12s ease infinite;
 }
 
 body:has(.contact-section)::before,
 body:has(.samurai-page)::before {
-  opacity: 0.78;
+  opacity: 0.82;
 }
 
 body:has(.works-page)::before {
-  opacity: 0.88;
-}
-
-body.home-page::before,
-body.top-page::before {
-  z-index: 0;
-  opacity: 0.88;
-  background:
-    linear-gradient(
-      45deg,
-      #000000,
-      #111111,
-      #2a2a2a,
-      #080808,
-      #1c1c1c,
-      #000000
-    );
-  background-size: 400% 400%;
-  animation: livinglyphGradientShift 18s ease infinite;
-}
-
-body.home-page .site-noise,
-body.top-page .site-noise {
-  opacity: 0.012;
+  opacity: 0.9;
 }
 
 @media (max-width: 768px) {
   body::before {
-    opacity: 0.9;
+    opacity: 0.86;
   }
 
   body:has(.contact-section)::before,
@@ -116,12 +82,7 @@ body.top-page .site-noise {
   }
 
   body:has(.works-page)::before {
-    opacity: 0.78;
-  }
-
-  body.home-page::before,
-  body.top-page::before {
-    opacity: 0.82;
+    opacity: 0.8;
   }
 }
 
@@ -165,10 +126,10 @@ a {
   inset: 0;
   z-index: 30;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.012;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.006) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
   background-size: 8px 8px;
   mix-blend-mode: screen;
 }
@@ -186,12 +147,13 @@ main,
 
 body:has(.works-page) .site-noise,
 body:has(.contact-section) .site-noise,
+body:has(.policy-section) .site-noise,
 body:has(.samurai-page) .site-noise {
-  opacity: 0.012;
+  opacity: 0;
 }
 
 body:has(.animal-art-page) .site-noise {
-  opacity: 0.05;
+  opacity: 0.018;
 }
 
 .site-header {
@@ -456,7 +418,7 @@ body.is-menu-open .back-to-top {
   overflow: hidden;
   pointer-events: none;
   visibility: visible;
-  opacity: 1;
+  opacity: 0.88;
   background: transparent;
   transition:
     opacity 450ms var(--ease),
@@ -473,7 +435,7 @@ body.is-menu-open .back-to-top {
 }
 
 .top-fixed-bg.is-loaded .top-fixed-bg-video {
-  opacity: 0.32;
+  opacity: 0.24;
 }
 
 .top-fixed-bg-overlay {
@@ -764,8 +726,8 @@ main#top {
   z-index: -1;
   content: "";
   background:
-    linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.004) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.004) 1px, transparent 1px);
   background-size: 10px 10px;
 }
 
@@ -1250,8 +1212,8 @@ main#top {
   content: "";
   opacity: 0.075;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.052) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.042) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
   background-size: 7px 7px;
   mix-blend-mode: screen;
   transition: opacity 800ms var(--ease);
@@ -1701,32 +1663,6 @@ main#top {
   }
 }
 
-@keyframes livinglyphAmbientMotion {
-  0% {
-    background-position:
-      0% 50%,
-      100% 40%,
-      50% 100%,
-      0% 50%;
-  }
-
-  50% {
-    background-position:
-      100% 45%,
-      0% 60%,
-      50% 0%,
-      100% 50%;
-  }
-
-  100% {
-    background-position:
-      0% 50%,
-      100% 40%,
-      50% 100%,
-      0% 50%;
-  }
-}
-
 @keyframes livinglyphGradientShift {
   0% {
     background-position: 0% 50%;
@@ -1746,7 +1682,12 @@ main#top {
   z-index: 1;
   min-height: 100svh;
   padding: clamp(8.8rem, 12vw, 11.5rem) clamp(1.4rem, 6vw, 6rem) clamp(3.8rem, 6vw, 5.5rem);
-  background: rgba(0, 0, 0, 0.92);
+  background: rgba(0, 0, 0, 0.84);
+}
+
+body:has(.contact-section) .subpage-main,
+body:has(.policy-section) .subpage-main {
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .contact-section,
