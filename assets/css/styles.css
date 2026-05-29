@@ -49,18 +49,16 @@ body::before {
   content: "";
   opacity: 1;
   background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 28%),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.045), transparent 32%),
     linear-gradient(
-      45deg,
-      #000000,
-      #141414,
-      #3a3a3a,
-      #080808,
-      #444444,
-      #1a1a1a,
-      #000000
+      135deg,
+      #050505 0%,
+      #111111 42%,
+      #2a2a2a 100%
     );
-  background-size: 400% 400%;
-  animation: livinglyphGradientShift 12s ease infinite;
+  background-size: 160% 160%, 180% 180%, 220% 220%;
+  animation: livinglyphGradientShift 18s ease-in-out infinite alternate;
 }
 
 body:has(.works-page)::before {
@@ -3638,6 +3636,7 @@ body:has(.policy-section) .subpage-main {
 
 .works-page .process,
 .service-hero,
+.service-showcase,
 .service-section,
 .service-final,
 .works-gallery,
@@ -3664,6 +3663,7 @@ body:has(.policy-section) .subpage-main {
 }
 
 .service-hero__inner,
+.service-showcase__figure,
 .service-section-heading,
 .service-section > h2,
 .service-card-grid,
@@ -3789,8 +3789,9 @@ body:has(.policy-section) .subpage-main {
 
 .service-hero {
   display: grid;
-  min-height: clamp(34rem, 62svh, 46rem);
+  min-height: clamp(31rem, 58svh, 42rem);
   align-items: center;
+  background: transparent;
   text-align: center;
 }
 
@@ -3841,6 +3842,53 @@ body:has(.policy-section) .subpage-main {
 .service-hero__body {
   width: min(100%, 50rem);
   margin-top: clamp(1.5rem, 2.5vw, 2.2rem);
+}
+
+.service-showcase {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0 0 clamp(5rem, 9vw, 8rem);
+  overflow: hidden;
+  background: transparent;
+}
+
+.service-showcase__figure {
+  width: 100%;
+  max-width: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+.service-showcase__image {
+  display: block;
+  width: 100%;
+  height: 720px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.service-showcase + .service-create {
+  padding-top: clamp(4.5rem, 8vw, 7rem);
+}
+
+@media (max-width: 1024px) {
+  .service-showcase__image {
+    height: 620px;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-showcase__image {
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-showcase__image {
+    height: auto;
+  }
 }
 
 .service-hero__actions {
@@ -5140,6 +5188,10 @@ body:has(.policy-section) .subpage-main {
     padding-top: clamp(6.8rem, 13vw, 8.2rem);
   }
 
+  .service-showcase {
+    padding: 0 0 clamp(4.8rem, 10vw, 6.4rem);
+  }
+
   .works-page .process-flow {
     grid-template-columns: 1fr;
     gap: clamp(1.4rem, 4vw, 2.2rem);
@@ -5299,10 +5351,19 @@ body:has(.policy-section) .subpage-main {
   .service-hero {
     min-height: auto;
     padding-top: clamp(5rem, 16vw, 6.2rem);
+    padding-bottom: clamp(3.8rem, 12vw, 5rem);
   }
 
   .service-hero h1 {
     font-size: clamp(2.8rem, 16vw, 4.6rem);
+  }
+
+  .service-showcase {
+    padding-bottom: clamp(4.5rem, 13vw, 6rem);
+  }
+
+  .service-showcase__image {
+    object-position: center center;
   }
 
   .service-card-grid,
