@@ -666,42 +666,31 @@ main#top {
 
 .top-actions__card {
   display: grid;
-  min-height: clamp(7.6rem, 9vw, 9.2rem);
+  min-height: clamp(6.6rem, 8vw, 8rem);
   place-items: center;
   gap: 0.58rem;
-  padding: clamp(1.35rem, 2vw, 1.9rem) clamp(1.6rem, 3vw, 2.6rem);
-  border: 1px solid rgba(246, 243, 238, 0.18);
-  border-radius: 999px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.035));
-  box-shadow:
-    0 1.25rem 3.5rem rgba(0, 0, 0, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  padding: clamp(1.15rem, 1.7vw, 1.55rem) clamp(1.5rem, 2.6vw, 2.25rem);
+  border: 1px solid rgba(246, 243, 238, 0.46);
+  border-radius: 1.5rem;
+  background: transparent;
+  box-shadow: none;
   color: inherit;
   text-align: center;
-  -webkit-backdrop-filter: blur(16px) saturate(1.12);
-  backdrop-filter: blur(16px) saturate(1.12);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   transition:
     background-color 360ms var(--ease),
     border-color 360ms var(--ease),
-    box-shadow 360ms var(--ease),
-    opacity 360ms var(--ease),
-    transform 360ms var(--ease);
+    color 360ms var(--ease),
+    opacity 360ms var(--ease);
 }
 
 .top-actions__card:hover,
 .top-actions__card:focus-visible {
-  border-color: rgba(246, 243, 238, 0.26);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.135), rgba(255, 255, 255, 0.05));
-  box-shadow:
-    0 1.55rem 4rem rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  border-color: rgba(246, 243, 238, 0.75);
+  background: rgba(255, 255, 255, 0.045);
   opacity: 1;
   outline: 0;
-  transform: translateY(-1px);
 }
 
 .top-actions__card h3 {
