@@ -62,23 +62,13 @@ body::before {
   animation: livinglyphGradientShift 12s ease infinite;
 }
 
-body:has(.contact-section)::before,
-body:has(.samurai-page)::before {
-  opacity: 0.82;
-}
-
 body:has(.works-page)::before {
   opacity: 0.9;
 }
 
 @media (max-width: 768px) {
   body::before {
-    opacity: 0.86;
-  }
-
-  body:has(.contact-section)::before,
-  body:has(.samurai-page)::before {
-    opacity: 0.72;
+    opacity: 0.95;
   }
 
   body:has(.works-page)::before {
@@ -126,7 +116,7 @@ a {
   inset: 0;
   z-index: 30;
   pointer-events: none;
-  opacity: 0.012;
+  opacity: 0.005;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.006) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
@@ -153,7 +143,7 @@ body:has(.samurai-page) .site-noise {
 }
 
 body:has(.animal-art-page) .site-noise {
-  opacity: 0.018;
+  opacity: 0.006;
 }
 
 body:has(.animal-art-page) .site-header {
@@ -720,9 +710,9 @@ main#top {
   justify-items: center;
   overflow: hidden;
   padding: clamp(4.8rem, 8.2vw, 7.4rem) clamp(1.4rem, 7vw, 7rem) clamp(4.6rem, 7.8vw, 7rem);
-  background: rgba(0, 0, 0, 0.35);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   text-align: left;
 }
 
@@ -970,9 +960,9 @@ main#top {
   position: relative;
   overflow: hidden;
   padding: clamp(3.8rem, 6.6vw, 5.8rem) clamp(1.4rem, 6vw, 6rem) clamp(4rem, 6.4vw, 5.8rem);
-  background: rgba(0, 0, 0, 0.45);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .process-title {
@@ -1297,7 +1287,7 @@ main#top {
   --samurai-ghost: rgba(255, 255, 255, 0.12);
   --samurai-line: rgba(255, 255, 255, 0.15);
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.72);
+  background: transparent;
   color: #fff;
 }
 
@@ -1313,7 +1303,7 @@ main#top {
   justify-content: center;
   padding: clamp(7.5rem, 12vw, 10rem) 1.5rem clamp(4rem, 8vw, 6rem);
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.72);
+  background: transparent;
   text-align: center;
 }
 
@@ -1376,7 +1366,7 @@ main#top {
 
 .samurai-section {
   position: relative;
-  background: rgba(0, 0, 0, 0.62);
+  background: rgba(0, 0, 0, 0.28);
   padding: clamp(8rem, 14vw, 12rem) clamp(1.5rem, 5vw, 3rem);
 }
 
@@ -1426,7 +1416,7 @@ main#top {
   gap: clamp(0.65rem, 1.2vw, 1rem);
   padding-block: clamp(4rem, 7vw, 6rem);
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.55);
+  background: transparent;
 }
 
 .samurai-marquee {
@@ -1703,14 +1693,16 @@ main#top {
   z-index: 1;
   min-height: 100svh;
   padding: clamp(8.8rem, 12vw, 11.5rem) clamp(1.4rem, 6vw, 6rem) clamp(3.8rem, 6vw, 5.5rem);
-  background: rgba(0, 0, 0, 0.55);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 body:has(.contact-section) .subpage-main,
 body:has(.policy-section) .subpage-main {
-  background: rgba(0, 0, 0, 0.72);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .contact-section,
@@ -1750,6 +1742,10 @@ body:has(.policy-section) .subpage-main {
   gap: clamp(1.05rem, 1.75vw, 1.45rem);
   width: min(100%, 42rem);
   margin: 0 auto;
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  background: rgba(0, 0, 0, 0.32);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .contact-lead {
@@ -3022,7 +3018,7 @@ body:has(.policy-section) .subpage-main {
   --samurai-muted: rgba(255, 255, 255, 0.62);
   --samurai-faint: rgba(255, 255, 255, 0.32);
   overflow-x: hidden;
-  background: rgba(0, 0, 0, 0.72);
+  background: transparent;
   color: #fff;
 }
 
@@ -3054,7 +3050,7 @@ body:has(.policy-section) .subpage-main {
   background:
     linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.18)),
     url("../images/samurai-art/top.png") center top / cover no-repeat,
-    rgba(0, 0, 0, 0.72);
+    transparent;
   text-align: center;
 }
 
@@ -3116,7 +3112,7 @@ body:has(.policy-section) .subpage-main {
 .samurai-marquee {
   width: 100%;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.52);
+  background: rgba(0, 0, 0, 0.24);
   user-select: none;
 }
 
@@ -3158,7 +3154,7 @@ body:has(.policy-section) .subpage-main {
   background:
     linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.48)),
     url("../images/samurai-art/concept.png") center / cover no-repeat,
-    rgba(0, 0, 0, 0.72);
+    transparent;
   text-align: center;
 }
 
@@ -3210,7 +3206,7 @@ body:has(.policy-section) .subpage-main {
   display: grid;
   justify-items: center;
   padding: clamp(7rem, 13vw, 12rem) clamp(1.4rem, 5vw, 3rem);
-  background: rgba(0, 0, 0, 0.58);
+  background: transparent;
   text-align: center;
 }
 
@@ -3261,7 +3257,7 @@ body:has(.policy-section) .subpage-main {
   justify-items: center;
   padding: clamp(7rem, 13vw, 12rem) 0 clamp(6rem, 10vw, 9rem);
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.58);
+  background: transparent;
   text-align: center;
 }
 
@@ -3615,9 +3611,9 @@ body:has(.policy-section) .subpage-main {
 .works-awards {
   position: relative;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.36);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .works-page .process {
