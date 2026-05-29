@@ -4092,17 +4092,16 @@ body:has(.policy-section) .subpage-main {
 .service-delivery-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
+  gap: clamp(1.3rem, 2vw, 2rem);
   width: min(100%, 1200px);
   margin-inline: auto;
-  border: 1px solid rgba(246, 243, 238, 0.22);
+  border: 0;
 }
 
 .service-delivery-grid article {
   min-width: 0;
   padding: clamp(1.8rem, 2.8vw, 2.6rem);
-  border-right: 1px solid rgba(246, 243, 238, 0.12);
-  background: rgba(255, 255, 255, 0.014);
+  border-right: 0;
 }
 
 .service-delivery-grid article:last-child {
@@ -4811,6 +4810,62 @@ body:has(.policy-section) .subpage-main {
 }
 
 .top-actions__card,
+.profile-portfolio,
+.service-card,
+.service-plan-card,
+.service-plan-schedule,
+.service-delivery-grid article,
+.service-project-meta,
+.service-final > p,
+.service-final__note,
+.contact-lead p:last-child {
+  border: 1px solid rgba(246, 243, 238, 0.18);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.42);
+  box-shadow:
+    0 1.5rem 5rem rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.top-actions__card,
+.profile-portfolio,
+.service-card,
+.service-plan-card,
+.service-plan-schedule {
+  padding: clamp(1.75rem, 4vw, 3rem);
+}
+
+.service-final > p,
+.service-final__note,
+.contact-lead p:last-child {
+  padding: clamp(1.2rem, 2.2vw, 1.7rem);
+}
+
+.works-page .process-label {
+  border-color: rgba(246, 243, 238, 0.18);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.42);
+  box-shadow:
+    0 1.5rem 5rem rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.works-gallery__portrait {
+  padding: clamp(0.7rem, 1.4vw, 1rem);
+  border: 1px solid rgba(246, 243, 238, 0.12);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow:
+    0 1rem 3.4rem rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
 .profile-portfolio-button,
 .service-cta,
 .contact-submit {
@@ -4831,18 +4886,12 @@ body:has(.policy-section) .subpage-main {
     transform 280ms var(--ease);
 }
 
-.top-actions__card {
-  border-radius: 1.25rem;
-}
-
 .profile-portfolio-button,
 .service-cta,
 .contact-submit {
   border-radius: 1.5rem;
 }
 
-.top-actions__card:hover,
-.top-actions__card:focus-visible,
 .profile-portfolio-button:hover,
 .profile-portfolio-button:focus-visible,
 .service-cta:hover,
@@ -4960,6 +5009,38 @@ body:has(.policy-section) .subpage-main {
 }
 
 @media (max-width: 768px) {
+  .top-actions__card,
+  .profile-portfolio,
+  .service-card,
+  .service-plan-card,
+  .service-plan-schedule,
+  .service-delivery-grid article,
+  .service-project-meta,
+  .service-final > p,
+  .service-final__note,
+  .contact-lead p:last-child,
+  .contact-form,
+  .works-page .process-label {
+    border-radius: 14px;
+    box-shadow:
+      0 1rem 3rem rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+
+  .top-actions__card,
+  .profile-portfolio,
+  .service-card,
+  .service-plan-card,
+  .service-plan-schedule {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .service-final > p,
+  .service-final__note,
+  .contact-lead p:last-child {
+    padding: 1.2rem;
+  }
+
   .section-note {
     max-width: calc(100% - 40px);
     margin-top: 24px;
@@ -5037,7 +5118,7 @@ body:has(.policy-section) .subpage-main {
   .service-delivery-grid article,
   .service-delivery-grid article:last-child {
     border-right: 0;
-    border-bottom: 1px solid rgba(246, 243, 238, 0.12);
+    border-bottom: 0;
   }
 
   .service-delivery-grid article:last-child {
