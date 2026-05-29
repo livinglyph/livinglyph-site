@@ -6,6 +6,7 @@
   --faint: rgba(246, 243, 238, 0.12);
   --glass-bg: rgba(246, 243, 238, 0.1);
   --glass-bg-hover: rgba(246, 243, 238, 0.16);
+  --link-button-radius: 1.5rem;
   --process-label-width: 17.4rem;
   --ease: cubic-bezier(0.19, 1, 0.22, 1);
   --a1-mincho: "A1明朝 M JIS2004 AP", "A1明朝 R JIS2004 AP", "A1明朝", "秀英明朝 L JIS2004",
@@ -4920,6 +4921,53 @@ body:has(.policy-section) .subpage-main {
 .top-actions__card:focus-visible {
   outline: 1px solid rgba(246, 243, 238, 0.55);
   outline-offset: 4px;
+}
+
+.glass-link-button {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.78rem 2.5rem;
+  border: 1px solid rgba(246, 243, 238, 0.32);
+  border-radius: var(--link-button-radius);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.22);
+  color: rgba(246, 243, 238, 0.94);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition:
+    background-color 280ms var(--ease),
+    border-color 280ms var(--ease),
+    box-shadow 280ms var(--ease),
+    color 280ms var(--ease),
+    opacity 280ms var(--ease),
+    transform 280ms var(--ease);
+}
+
+.glass-link-button:hover,
+.glass-link-button:focus-visible {
+  border-color: rgba(246, 243, 238, 0.5);
+  background: rgba(255, 255, 255, 0.095);
+  box-shadow: 0 0.625rem 2.25rem rgba(0, 0, 0, 0.3);
+  color: #fff;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.top-actions__card.glass-link-button {
+  display: grid;
+  width: 100%;
+  min-height: clamp(6.6rem, 8vw, 8rem);
+  padding: clamp(1.15rem, 1.7vw, 1.55rem) clamp(1.5rem, 2.6vw, 2.25rem);
+  place-items: center;
+  gap: 0.58rem;
+}
+
+.top-actions__card.glass-link-button p {
+  max-width: 26rem;
 }
 
 .works-page + .site-footer {
