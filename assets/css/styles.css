@@ -156,6 +156,11 @@ body:has(.animal-art-page) .site-noise {
   opacity: 0.018;
 }
 
+body:has(.animal-art-page) .site-header {
+  border-bottom: 0;
+  box-shadow: none;
+}
+
 .site-header {
   position: fixed;
   top: 0;
@@ -169,7 +174,7 @@ body:has(.animal-art-page) .site-noise {
   min-height: clamp(4.8rem, 6vw, 6.2rem);
   padding: 1.1rem clamp(1.4rem, 4.8vw, 5.2rem);
   background: rgba(0, 0, 0, 0.74);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.012);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   transition:
@@ -593,9 +598,9 @@ main#top {
 .site-footer {
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.45);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .profile-section {
@@ -723,8 +728,7 @@ main#top {
 
 .manifesto::before,
 .process::before,
-.gallery::before,
-.site-footer::before {
+.gallery::before {
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -733,6 +737,14 @@ main#top {
     linear-gradient(rgba(255, 255, 255, 0.004) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.004) 1px, transparent 1px);
   background-size: 10px 10px;
+}
+
+.site-footer::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: transparent;
 }
 
 .manifesto-body {
@@ -1261,9 +1273,9 @@ main#top {
   place-items: center;
   padding: clamp(2.5rem, 4.2vw, 3.8rem) 1.25rem;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.45);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .site-footer p {
@@ -4854,9 +4866,9 @@ body:has(.policy-section) .subpage-main {
   min-height: auto;
   padding: 48px 20px 56px;
   overflow: visible;
-  background: rgba(0, 0, 0, 0.45);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   color: rgba(246, 243, 238, 0.75);
   font-family: var(--a1-mincho);
   font-size: 12px;
