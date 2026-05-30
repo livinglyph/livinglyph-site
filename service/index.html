@@ -23,7 +23,7 @@
       rel="stylesheet"
     />
     <link rel="icon" href="../assets/images/livinglyph-logo.png" type="image/png" />
-    <link rel="stylesheet" href="../assets/css/styles.css?v=20260529profileimage1" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20260530videoslider2" />
   </head>
   <body class="service-body">
     <div class="site-noise" aria-hidden="true"></div>
@@ -315,35 +315,68 @@
         </div>
       </section>
 
-      <section class="works-movie reveal" aria-labelledby="works-movie-title" data-works-movies>
+      <section class="service-video-section reveal" aria-labelledby="works-movie-title" data-service-video-slider>
         <div class="service-section-heading">
           <p>MOVIE</p>
           <h2 id="works-movie-title">制作動画</h2>
         </div>
-        <div class="works-movie__slider">
-          <div class="works-movie__viewport">
-            <div class="works-movie__track" data-works-movie-track>
-              <article class="works-movie-slide" data-works-movie-slide>
-                <video muted loop playsinline preload="metadata">
-                  <source src="../assets/videos/works/movie1.mp4" type="video/mp4" />
-                </video>
-              </article>
-              <article class="works-movie-slide" data-works-movie-slide>
-                <video muted loop playsinline preload="metadata">
-                  <source src="../assets/videos/works/movie2.mp4" type="video/mp4" />
-                </video>
-              </article>
-              <article class="works-movie-slide" data-works-movie-slide>
-                <video muted loop playsinline preload="metadata">
-                  <source src="../assets/videos/works/movie3.mp4" type="video/mp4" />
-                </video>
-              </article>
-            </div>
-          </div>
-          <div class="works-movie__controls" aria-label="制作動画の切り替え">
-            <button class="works-movie__arrow works-movie__arrow--prev" type="button" aria-label="前の動画" data-works-movie-prev></button>
-            <button class="works-movie__arrow works-movie__arrow--next" type="button" aria-label="次の動画" data-works-movie-next></button>
-          </div>
+        <div class="service-video-slider" aria-label="制作動画スライダー">
+          <article class="service-video-slide" data-service-video-slide tabindex="0" aria-expanded="false">
+            <video class="service-video-media" muted loop playsinline preload="metadata">
+              <source src="../assets/videos/works/movie1.mp4" type="video/mp4" />
+            </video>
+            <p class="service-video-title">MOVIE 01</p>
+            <button class="service-video-close" type="button" aria-label="動画を閉じる" data-service-video-close></button>
+          </article>
+          <article class="service-video-slide" data-service-video-slide tabindex="0" aria-expanded="false">
+            <video class="service-video-media" muted loop playsinline preload="metadata">
+              <source src="../assets/videos/works/movie2.mp4" type="video/mp4" />
+            </video>
+            <p class="service-video-title">MOVIE 02</p>
+            <button class="service-video-close" type="button" aria-label="動画を閉じる" data-service-video-close></button>
+          </article>
+          <article class="service-video-slide" data-service-video-slide tabindex="0" aria-expanded="false">
+            <video class="service-video-media" muted loop playsinline preload="metadata">
+              <source src="../assets/videos/works/movie3.mp4" type="video/mp4" />
+            </video>
+            <p class="service-video-title">MOVIE 03</p>
+            <button class="service-video-close" type="button" aria-label="動画を閉じる" data-service-video-close></button>
+          </article>
+          <article class="service-video-slide" data-service-video-slide tabindex="0" aria-expanded="false">
+            <video class="service-video-media" muted loop playsinline preload="metadata">
+              <source src="../assets/videos/works/movie4.mp4" type="video/mp4" />
+            </video>
+            <p class="service-video-title">MOVIE 04</p>
+            <button class="service-video-close" type="button" aria-label="動画を閉じる" data-service-video-close></button>
+          </article>
+          <article class="service-video-slide" data-service-video-slide tabindex="0" aria-expanded="false">
+            <video class="service-video-media" muted loop playsinline preload="metadata">
+              <source src="../assets/videos/works/movie5.mp4" type="video/mp4" />
+            </video>
+            <p class="service-video-title">MOVIE 05</p>
+            <button class="service-video-close" type="button" aria-label="動画を閉じる" data-service-video-close></button>
+          </article>
+          <article class="service-video-slide" data-service-video-slide tabindex="0" aria-expanded="false">
+            <video class="service-video-media" muted loop playsinline preload="metadata">
+              <source src="../assets/videos/works/movie6.mp4" type="video/mp4" />
+            </video>
+            <p class="service-video-title">MOVIE 06</p>
+            <button class="service-video-close" type="button" aria-label="動画を閉じる" data-service-video-close></button>
+          </article>
+          <article class="service-video-slide" data-service-video-slide tabindex="0" aria-expanded="false">
+            <video class="service-video-media" muted loop playsinline preload="metadata">
+              <source src="../assets/videos/works/movie7.mp4" type="video/mp4" />
+            </video>
+            <p class="service-video-title">MOVIE 07</p>
+            <button class="service-video-close" type="button" aria-label="動画を閉じる" data-service-video-close></button>
+          </article>
+          <article class="service-video-slide" data-service-video-slide tabindex="0" aria-expanded="false">
+            <video class="service-video-media" muted loop playsinline preload="metadata">
+              <source src="../assets/videos/works/movie8.mp4" type="video/mp4" />
+            </video>
+            <p class="service-video-title">MOVIE 08</p>
+            <button class="service-video-close" type="button" aria-label="動画を閉じる" data-service-video-close></button>
+          </article>
         </div>
       </section>
 
@@ -433,6 +466,6 @@
       <p data-i18n="footerCopy">© 2026 LIVINGLYPH. All Rights Reserved.</p>
     </footer>
 
-    <script src="../assets/js/app.js?v=20260528nav4"></script>
+    <script src="../assets/js/app.js?v=20260530videoslider2"></script>
   </body>
 </html>

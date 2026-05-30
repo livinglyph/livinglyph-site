@@ -559,6 +559,94 @@ function setupWorksMovies() {
   goToSlide(0);
 }
 
+function setupServiceVideoSlider() {
+  const sliders = [...document.querySelectorAll("[data-service-video-slider]")];
+
+  if (!sliders.length) {
+    return;
+  }
+
+  function stopVideo(video) {
+    if (!video) {
+      return;
+    }
+
+    video.pause();
+
+    try {
+      video.currentTime = 0;
+    } catch (error) {
+      // Some mobile browsers only allow seeking after metadata has loaded.
+    }
+  }
+
+  sliders.forEach((slider) => {
+    const slides = [...slider.querySelectorAll("[data-service-video-slide]")];
+
+    if (!slides.length) {
+      return;
+    }
+
+    function setActiveSlide(activeSlide) {
+      slider.classList.toggle("has-active", Boolean(activeSlide));
+
+      slides.forEach((slide) => {
+        const isActive = slide === activeSlide;
+        const video = slide.querySelector("video");
+
+        slide.classList.toggle("is-active", isActive);
+        slide.setAttribute("aria-expanded", isActive ? "true" : "false");
+
+        if (!isActive) {
+          stopVideo(video);
+          return;
+        }
+
+        if (video) {
+          video.muted = true;
+          video.playsInline = true;
+          video.preload = "metadata";
+
+          if (video.readyState === 0) {
+            video.load();
+          }
+
+          const playPromise = video.play();
+
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(() => {
+              // Browser autoplay policy can still block playback in some local contexts.
+            });
+          }
+        }
+      });
+    }
+
+    slides.forEach((slide) => {
+      const closeButton = slide.querySelector("[data-service-video-close]");
+
+      slide.addEventListener("click", () => {
+        if (!slide.classList.contains("is-active")) {
+          setActiveSlide(slide);
+        }
+      });
+
+      slide.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setActiveSlide(slide);
+        }
+      });
+
+      closeButton?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setActiveSlide(null);
+        slide.focus({ preventScroll: true });
+      });
+    });
+  });
+}
+
 function hydrateRiseText() {
   riseTextItems.forEach((item) => {
     const lines = item.innerHTML
@@ -698,6 +786,7 @@ setupSamuraiMarquees();
 setupSamuraiSlider();
 setupWorksMarquees();
 setupWorksMovies();
+setupServiceVideoSlider();
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
