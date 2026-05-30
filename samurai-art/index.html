@@ -26,7 +26,7 @@
       rel="stylesheet"
     />
     <link rel="icon" href="../assets/images/livinglyph-logo.png" type="image/png" />
-    <link rel="stylesheet" href="../assets/css/styles.css?v=20260529profileimage1" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20260530samuraiworks2" />
   </head>
   <body>
     <div class="site-noise" aria-hidden="true"></div>
@@ -139,59 +139,120 @@
         <div class="samurai-marquee__track" data-samurai-marquee></div>
       </section>
 
-      <section class="samurai-works reveal" aria-labelledby="samurai-works-title" data-samurai-slider tabindex="0">
+      <section class="samurai-works reveal" aria-labelledby="samurai-works-title">
         <h2 id="samurai-works-title">WORKS</h2>
-        <div class="samurai-slider" aria-label="SAMURAI ART works slider">
-          <button class="samurai-slider__button samurai-slider__button--prev" type="button" aria-label="Previous work" data-samurai-prev></button>
-          <div class="samurai-slider__viewport">
-            <figure class="samurai-slide" data-title-ja="秋葉原" data-title-en="AKIHABARA">
-              <img src="../assets/images/samurai-art/akihabara.png" alt="秋葉原 / AKIHABARA" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="京都" data-title-en="KYOTO">
-              <img src="../assets/images/samurai-art/kyoto.png" alt="京都 / KYOTO" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="ANAP" data-title-en="ANAP">
-              <img src="../assets/images/samurai-art/anap.png" alt="ANAP / ANAP" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="NFT NYC" data-title-en="NFT NYC">
-              <img src="../assets/images/samurai-art/nftnyc.png" alt="NFT NYC / NFT NYC" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="ASTORO BOY" data-title-en="ASTRO BOY">
-              <img src="../assets/images/samurai-art/astroboy.png" alt="ASTORO BOY / ASTRO BOY" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="ATOM" data-title-en="ATOM">
-              <img src="../assets/images/samurai-art/atom.png" alt="ATOM / ATOM" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="鉄腕" data-title-en="IRON ARM">
-              <img src="../assets/images/samurai-art/ironarm.png" alt="鉄腕 / IRON ARM" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="キャシャーン" data-title-en="CASSHAN">
-              <img src="../assets/images/samurai-art/casshan1.png" alt="キャシャーン / CASSHAN" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="CASSHAN" data-title-en="CASSHAN">
-              <img src="../assets/images/samurai-art/casshan2.png" alt="CASSHAN / CASSHAN" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="キャシャーン" data-title-en="CASSHAN">
-              <img src="../assets/images/samurai-art/casshan3.png" alt="キャシャーン / CASSHAN" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="小面" data-title-en="FACET">
-              <img src="../assets/images/samurai-art/facet.png" alt="小面 / FACET" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="狐面" data-title-en="FOX MASK">
-              <img src="../assets/images/samurai-art/foxmask.png" alt="狐面 / FOX MASK" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="ひょっとこ" data-title-en="HYOTTOKO">
-              <img src="../assets/images/samurai-art/hyottoko.png" alt="ひょっとこ / HYOTTOKO" loading="lazy" />
-            </figure>
-            <figure class="samurai-slide" data-title-ja="藤原カムイ" data-title-en="FUJIWARA KAMUI">
-              <img src="../assets/images/samurai-art/fujiwarakamui.png" alt="藤原カムイ / FUJIWARA KAMUI" loading="lazy" />
-            </figure>
+        <div class="samurai-works-slider" data-samurai-works-slider tabindex="0" aria-label="SAMURAI ART works carousel">
+          <div class="samurai-works-viewport">
+            <div class="samurai-works-backdrop" aria-hidden="true">
+              <img src="../assets/images/samurai-art/akihabara.png" alt="" data-samurai-works-backdrop />
+            </div>
+            <div class="samurai-works-overlay" aria-hidden="true"></div>
+            <div class="samurai-works-stage">
+              <article class="samurai-works-slide is-active" data-samurai-works-slide data-title-ja="秋葉原" data-title-en="AKIHABARA">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/akihabara.png" alt="秋葉原 / AKIHABARA" loading="eager" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">秋葉原</h3>
+                  <p class="samurai-works-subtitle">AKIHABARA</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="京都" data-title-en="KYOTO">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/kyoto.png" alt="京都 / KYOTO" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">京都</h3>
+                  <p class="samurai-works-subtitle">KYOTO</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="ANAP" data-title-en="ANAP">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/anap.png" alt="ANAP / ANAP" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">ANAP</h3>
+                  <p class="samurai-works-subtitle">ANAP</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="NFT NYC" data-title-en="NFT NYC">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/nftnyc.png" alt="NFT NYC / NFT NYC" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">NFT NYC</h3>
+                  <p class="samurai-works-subtitle">NFT NYC</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="ASTORO BOY" data-title-en="ASTRO BOY">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/astroboy.png" alt="ASTORO BOY / ASTRO BOY" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">ASTORO BOY</h3>
+                  <p class="samurai-works-subtitle">ASTRO BOY</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="ATOM" data-title-en="ATOM">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/atom.png" alt="ATOM / ATOM" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">ATOM</h3>
+                  <p class="samurai-works-subtitle">ATOM</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="鉄腕" data-title-en="IRON ARM">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/ironarm.png" alt="鉄腕 / IRON ARM" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">鉄腕</h3>
+                  <p class="samurai-works-subtitle">IRON ARM</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="キャシャーン" data-title-en="CASSHAN">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/casshan1.png" alt="キャシャーン / CASSHAN" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">キャシャーン</h3>
+                  <p class="samurai-works-subtitle">CASSHAN</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="CASSHAN" data-title-en="CASSHAN">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/casshan2.png" alt="CASSHAN / CASSHAN" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">CASSHAN</h3>
+                  <p class="samurai-works-subtitle">CASSHAN</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="キャシャーン" data-title-en="CASSHAN">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/casshan3.png" alt="キャシャーン / CASSHAN" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">キャシャーン</h3>
+                  <p class="samurai-works-subtitle">CASSHAN</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="小面" data-title-en="FACET">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/facet.png" alt="小面 / FACET" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">小面</h3>
+                  <p class="samurai-works-subtitle">FACET</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="狐面" data-title-en="FOX MASK">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/foxmask.png" alt="狐面 / FOX MASK" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">狐面</h3>
+                  <p class="samurai-works-subtitle">FOX MASK</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="ひょっとこ" data-title-en="HYOTTOKO">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/hyottoko.png" alt="ひょっとこ / HYOTTOKO" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">ひょっとこ</h3>
+                  <p class="samurai-works-subtitle">HYOTTOKO</p>
+                </div>
+              </article>
+              <article class="samurai-works-slide" data-samurai-works-slide data-title-ja="藤原カムイ" data-title-en="FUJIWARA KAMUI">
+                <img class="samurai-works-image" src="../assets/images/samurai-art/fujiwarakamui.png" alt="藤原カムイ / FUJIWARA KAMUI" loading="lazy" />
+                <div class="samurai-works-caption">
+                  <h3 class="samurai-works-title">藤原カムイ</h3>
+                  <p class="samurai-works-subtitle">FUJIWARA KAMUI</p>
+                </div>
+              </article>
+            </div>
+            <div class="samurai-works-controls">
+              <button class="samurai-works-prev" type="button" aria-label="Previous work" data-samurai-works-prev>←</button>
+              <button class="samurai-works-next" type="button" aria-label="Next work" data-samurai-works-next>→</button>
+            </div>
+            <div class="samurai-works-pagination" data-samurai-works-pagination aria-label="Works slider pagination"></div>
           </div>
-          <button class="samurai-slider__button samurai-slider__button--next" type="button" aria-label="Next work" data-samurai-next></button>
-        </div>
-        <div class="samurai-work-title" aria-live="polite">
-          <p data-samurai-title-ja>秋葉原</p>
-          <span data-samurai-title-en>AKIHABARA</span>
         </div>
       </section>
 
@@ -204,6 +265,6 @@
       <p data-i18n="footerCopy">© 2026 LIVINGLYPH. All Rights Reserved.</p>
     </footer>
 
-    <script src="../assets/js/app.js?v=20260528nav4" defer></script>
+    <script src="../assets/js/app.js?v=20260530samuraiworks2" defer></script>
   </body>
 </html>

@@ -257,58 +257,68 @@ function setupContactForm() {
 }
 
 function setupSamuraiSlider() {
-  const slider = document.querySelector("[data-samurai-slider]");
+  const slider = document.querySelector("[data-samurai-works-slider]");
 
   if (!slider) {
     return;
   }
 
-  const slides = [...slider.querySelectorAll(".samurai-slide")];
-  const prevButton = slider.querySelector("[data-samurai-prev]");
-  const nextButton = slider.querySelector("[data-samurai-next]");
-  const titleJa = slider.querySelector("[data-samurai-title-ja]");
-  const titleEn = slider.querySelector("[data-samurai-title-en]");
-  let currentIndex = 0;
+  const slides = [...slider.querySelectorAll("[data-samurai-works-slide]")];
+  const backdrop = slider.querySelector("[data-samurai-works-backdrop]");
+  const prevButton = slider.querySelector("[data-samurai-works-prev]");
+  const nextButton = slider.querySelector("[data-samurai-works-next]");
+  const pagination = slider.querySelector("[data-samurai-works-pagination]");
 
-  function getCurrentLanguage() {
-    return document.body.dataset.language === "en" ? "en" : "ja";
+  if (!slides.length) {
+    return;
   }
 
+  let currentIndex = Math.max(
+    0,
+    slides.findIndex((slide) => slide.classList.contains("is-active"))
+  );
+  const paginationButtons = slides.map((slide, index) => {
+    const button = document.createElement("button");
+    const title = slide.dataset.titleJa || slide.dataset.titleEn || `Work ${index + 1}`;
+
+    button.type = "button";
+    button.setAttribute("aria-label", `${title}を表示`);
+    button.addEventListener("click", () => {
+      currentIndex = index;
+      updateSlider();
+    });
+    pagination?.appendChild(button);
+
+    return button;
+  });
+
   function updateSlider() {
-    const language = getCurrentLanguage();
+    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+    const nextIndex = (currentIndex + 1) % slides.length;
 
     slides.forEach((slide, index) => {
-      let offset = index - currentIndex;
+      const isActive = index === currentIndex;
+      const isPrev = index === prevIndex;
+      const isNext = index === nextIndex;
 
-      if (offset > slides.length / 2) {
-        offset -= slides.length;
-      }
-
-      if (offset < -slides.length / 2) {
-        offset += slides.length;
-      }
-
-      slide.style.setProperty("--slide-offset", offset);
-      slide.classList.toggle("is-active", index === currentIndex);
-      slide.classList.toggle("is-neighbor", Math.abs(offset) === 1);
-      slide.setAttribute("aria-hidden", String(index !== currentIndex));
+      slide.classList.toggle("is-active", isActive);
+      slide.classList.toggle("is-prev", isPrev);
+      slide.classList.toggle("is-next", isNext);
+      slide.setAttribute("aria-hidden", String(!isActive));
     });
 
-    const currentSlide = slides[currentIndex];
+    const activeImage = slides[currentIndex]?.querySelector(".samurai-works-image");
 
-    if (titleJa && currentSlide) {
-      titleJa.textContent =
-        language === "en"
-          ? currentSlide.dataset.titleEn || currentSlide.dataset.titleJa || ""
-          : currentSlide.dataset.titleJa || "";
+    if (backdrop && activeImage) {
+      backdrop.src = activeImage.currentSrc || activeImage.src;
     }
 
-    if (titleEn && currentSlide) {
-      titleEn.textContent =
-        language === "en"
-          ? currentSlide.dataset.titleJa || currentSlide.dataset.titleEn || ""
-          : currentSlide.dataset.titleEn || "";
-    }
+    paginationButtons.forEach((button, index) => {
+      const isActive = index === currentIndex;
+
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-current", isActive ? "true" : "false");
+    });
   }
 
   function moveSlider(direction) {
@@ -318,14 +328,15 @@ function setupSamuraiSlider() {
 
   prevButton?.addEventListener("click", () => moveSlider(-1));
   nextButton?.addEventListener("click", () => moveSlider(1));
-  document.addEventListener("livinglyph:language-change", updateSlider);
 
   slider.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
+      event.preventDefault();
       moveSlider(-1);
     }
 
     if (event.key === "ArrowRight") {
+      event.preventDefault();
       moveSlider(1);
     }
   });
