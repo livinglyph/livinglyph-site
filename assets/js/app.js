@@ -17,6 +17,8 @@ const preferredLanguageKey = "livinglyph-language";
 const livinglyphEntrySeenKey = "livinglyph_entry_seen";
 const livinglyphEntryWordsKey = "livinglyph_entry_words";
 const livinglyphWordsLimit = 30;
+// Temporarily disabled until visitor words can be stored in an external DB.
+const livinglyphEntryEnabled = false;
 const defaultLivinglyphWords = [
   { word: "GLYPH", createdAt: null, isDefault: true },
   { word: "LIFE", createdAt: null, isDefault: true },
@@ -185,6 +187,10 @@ function getLivinglyphWords() {
 }
 
 function getLivinglyphDisplayWords() {
+  if (!livinglyphEntryEnabled) {
+    return defaultLivinglyphWords;
+  }
+
   const userWords = getLivinglyphWords();
   const seenWords = new Set();
 
@@ -325,6 +331,18 @@ function setupLivinglyphEntry() {
   let entryMode = "entry";
 
   if (!entry || !entryForm || !entryInput || !skipButton || !submitButton || !entryKicker || !entryTitle || !entryDescription) {
+    return;
+  }
+
+  if (!livinglyphEntryEnabled) {
+    entry.classList.add("is-hidden");
+    entry.setAttribute("hidden", "");
+
+    if (new URLSearchParams(window.location.search).get("entry") === "1") {
+      const cleanUrl = `${window.location.pathname}${window.location.hash || ""}`;
+      window.history.replaceState(null, "", cleanUrl || "/");
+    }
+
     return;
   }
 

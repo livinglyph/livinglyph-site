@@ -1049,6 +1049,11 @@ main#top {
     box-shadow 0.3s ease;
 }
 
+.livinglyph-words-link[hidden],
+.word-entry-cta[hidden] {
+  display: none;
+}
+
 .livinglyph-words-link:hover,
 .livinglyph-words-link:focus-visible,
 .word-entry-cta:hover,
