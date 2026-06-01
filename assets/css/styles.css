@@ -830,10 +830,6 @@ main#top {
   animation: livinglyphWordsLoopLow 42s linear infinite;
 }
 
-.livinglyph-word-cloud:hover .livinglyph-word-track {
-  animation-play-state: paused;
-}
-
 .livinglyph-word-group {
   display: flex;
   align-items: center;
