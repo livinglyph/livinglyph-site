@@ -783,6 +783,10 @@ main#top {
   text-align: center;
 }
 
+.livinglyph-words.is-disabled {
+  display: none;
+}
+
 .livinglyph-words__inner {
   display: grid;
   width: min(100%, 70rem);
