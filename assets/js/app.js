@@ -14,6 +14,15 @@ const languageButtons = [...document.querySelectorAll("[data-lang-option]")];
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const parallaxMedia = window.matchMedia("(min-width: 1025px)");
 const preferredLanguageKey = "livinglyph-language";
+const livinglyphEntrySeenKey = "livinglyph_entry_seen";
+const livinglyphEntryWordsKey = "livinglyph_entry_words";
+const livinglyphWordsLimit = 30;
+const defaultLivinglyphWords = [
+  { word: "GLYPH", createdAt: null, isDefault: true },
+  { word: "LIFE", createdAt: null, isDefault: true },
+  { word: "余白", createdAt: null, isDefault: true },
+  { word: "記憶", createdAt: null, isDefault: true },
+];
 const samuraiLoopImages = Array.from({ length: 56 }, (_, index) => `loop${index + 1}@2x.png`);
 const worksLoopImages = Array.from(
   { length: 39 },
@@ -135,6 +144,265 @@ const translations = {
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
+}
+
+function normalizeLivinglyphWordItem(item) {
+  if (typeof item === "string") {
+    const word = item.trim();
+    return word ? { word, createdAt: null } : null;
+  }
+
+  if (item && typeof item === "object") {
+    const word = String(item.word || "").trim();
+    return word ? { word, createdAt: item.createdAt || null, isDefault: item.isDefault === true } : null;
+  }
+
+  return null;
+}
+
+function isWordAddedToday(createdAt) {
+  if (!createdAt) {
+    return false;
+  }
+
+  const created = new Date(createdAt);
+
+  if (Number.isNaN(created.getTime())) {
+    return false;
+  }
+
+  const now = new Date();
+  return created.getFullYear() === now.getFullYear() && created.getMonth() === now.getMonth() && created.getDate() === now.getDate();
+}
+
+function getLivinglyphWords() {
+  try {
+    const savedWords = JSON.parse(window.localStorage.getItem(livinglyphEntryWordsKey) || "[]");
+    return Array.isArray(savedWords) ? savedWords.map(normalizeLivinglyphWordItem).filter((item) => item && !item.isDefault) : [];
+  } catch {
+    return [];
+  }
+}
+
+function getLivinglyphDisplayWords() {
+  const userWords = getLivinglyphWords();
+  const seenWords = new Set();
+
+  return [...defaultLivinglyphWords, ...userWords].filter((item) => {
+    const key = item.word.toLocaleLowerCase();
+
+    if (seenWords.has(key)) {
+      return false;
+    }
+
+    seenWords.add(key);
+    return true;
+  });
+}
+
+function saveLivinglyphWord(word) {
+  const normalizedWord = String(word || "").trim();
+
+  if (!normalizedWord) {
+    return getLivinglyphWords();
+  }
+
+  const currentWords = getLivinglyphWords();
+  const hasWord = currentWords.some((currentWord) => currentWord.word.toLocaleLowerCase() === normalizedWord.toLocaleLowerCase());
+
+  if (hasWord) {
+    return currentWords;
+  }
+
+  const nextWords = [
+    {
+      word: normalizedWord,
+      createdAt: new Date().toISOString(),
+    },
+    ...currentWords,
+  ].slice(0, livinglyphWordsLimit);
+
+  try {
+    window.localStorage.setItem(livinglyphEntryWordsKey, JSON.stringify(nextWords));
+  } catch {
+    return nextWords;
+  }
+
+  return nextWords;
+}
+
+function renderLivinglyphWords() {
+  const wordCloud = document.querySelector("[data-livinglyph-word-cloud]");
+
+  if (!wordCloud) {
+    return;
+  }
+
+  const displayWords = getLivinglyphDisplayWords().slice(0, livinglyphWordsLimit);
+  const isLowCountWords = displayWords.length <= 6;
+  const repeatCount = isLowCountWords ? 3 : 2;
+  const yClasses = ["livinglyph-word--y1", "livinglyph-word--y2", "livinglyph-word--y3", "livinglyph-word--y4", "livinglyph-word--y5"];
+  const floatClasses = ["livinglyph-word--float", "livinglyph-word--float-alt"];
+
+  wordCloud.innerHTML = "";
+  wordCloud.classList.toggle("is-low-count", isLowCountWords);
+  wordCloud.classList.add("is-marquee");
+  const track = document.createElement("div");
+  track.className = "livinglyph-word-track";
+
+  Array.from({ length: repeatCount }).forEach((_, groupIndex) => {
+    const group = document.createElement("div");
+    group.className = "livinglyph-word-group";
+
+    if (groupIndex > 0) {
+      group.setAttribute("aria-hidden", "true");
+    }
+
+    displayWords.forEach((item, index) => {
+      const wordItem = document.createElement("span");
+      const wordBubble = document.createElement("span");
+      const isNewWord = !item.isDefault && isWordAddedToday(item.createdAt);
+
+      wordItem.className = `livinglyph-word ${yClasses[index % yClasses.length]}`;
+      wordBubble.className = `livinglyph-word--bubble ${floatClasses[index % floatClasses.length]}${
+        isNewWord ? " livinglyph-word--new" : ""
+      }`;
+      wordBubble.textContent = item.word;
+      wordBubble.style.setProperty("--word-delay", `${(index % 8) * -0.42}s`);
+      wordBubble.style.setProperty("--word-duration", `${6.4 + (index % 5) * 0.65}s`);
+      wordItem.appendChild(wordBubble);
+      group.appendChild(wordItem);
+    });
+
+    track.appendChild(group);
+  });
+
+  wordCloud.appendChild(track);
+}
+
+function trackLivinglyphEntryEvent(eventName, params = {}) {
+  try {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, params);
+    }
+  } catch {
+    // Analytics should never block the entry experience.
+  }
+
+  try {
+    if (typeof window.va === "function") {
+      window.va("event", eventName, params);
+    }
+  } catch {
+    // Vercel Analytics may not be installed on local/static previews.
+  }
+}
+
+async function submitLivinglyphEntryWord(word) {
+  const normalizedWord = String(word || "").trim();
+
+  if (normalizedWord) {
+    saveLivinglyphWord(normalizedWord);
+  }
+
+  renderLivinglyphWords();
+
+  // TODO: Later, send approved words to Supabase / Firebase / Formspree.
+}
+
+function setupLivinglyphEntry() {
+  renderLivinglyphWords();
+
+  const entry = document.querySelector("[data-livinglyph-entry]");
+  const entryForm = document.querySelector("[data-livinglyph-entry-form]");
+  const entryInput = document.querySelector("[data-livinglyph-entry-input]");
+  const skipButton = document.querySelector("[data-livinglyph-entry-skip]");
+  const submitButton = document.querySelector("[data-livinglyph-entry-submit]");
+  const entryKicker = document.querySelector("[data-livinglyph-entry-kicker]");
+  const entryTitle = document.querySelector("[data-livinglyph-entry-title]");
+  const entryDescription = document.querySelector("[data-livinglyph-entry-description]");
+  const reentryLinks = [...document.querySelectorAll("[data-livinglyph-reentry-link]")];
+  let entryMode = "entry";
+
+  if (!entry || !entryForm || !entryInput || !skipButton || !submitButton || !entryKicker || !entryTitle || !entryDescription) {
+    return;
+  }
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const shouldForceEntry = searchParams.get("entry") === "1";
+  let hasSeenEntry = false;
+
+  try {
+    hasSeenEntry = window.localStorage.getItem(livinglyphEntrySeenKey) === "1";
+  } catch {
+    hasSeenEntry = false;
+  }
+
+  function updateEntryMode(mode = "entry") {
+    const isReentry = mode === "reentry";
+
+    entryMode = isReentry ? "reentry" : "entry";
+    entryKicker.textContent = isReentry ? "ADD YOUR WORD" : "ENTER LIVINGLYPH";
+    entryTitle.textContent = isReentry ? "言葉を入力する" : "LIVINGLYPHは、文字でイメージを描くアートプロジェクトです。";
+    entryDescription.innerHTML = "あなたが作品にしてほしい言葉を入力してください。<br />入力された言葉は、今後の作品制作のヒントとして使用します。";
+    submitButton.textContent = isReentry ? "SUBMIT" : "ENTER";
+    skipButton.textContent = isReentry ? "CANCEL" : "SKIP";
+  }
+
+  function cleanupEntryQuery() {
+    if (new URLSearchParams(window.location.search).get("entry") !== "1") {
+      return;
+    }
+
+    const cleanUrl = `${window.location.pathname}${window.location.hash || ""}`;
+    window.history.replaceState(null, "", cleanUrl || "/");
+  }
+
+  function openEntry(mode = "entry") {
+    updateEntryMode(mode);
+    entryInput.value = "";
+    entry.removeAttribute("hidden");
+    window.requestAnimationFrame(() => {
+      entry.classList.remove("is-hidden");
+      trackLivinglyphEntryEvent("entry_view", { mode: entryMode });
+    });
+    window.setTimeout(() => entryInput.focus({ preventScroll: true }), 360);
+  }
+
+  function closeEntry(eventName) {
+    entry.classList.add("is-hidden");
+    entry.setAttribute("hidden", "");
+
+    try {
+      window.localStorage.setItem(livinglyphEntrySeenKey, "1");
+    } catch {
+      // localStorage may be unavailable in some private browsing modes.
+    }
+
+    cleanupEntryQuery();
+    trackLivinglyphEntryEvent(eventName, { mode: entryMode });
+  }
+
+  if (!hasSeenEntry || shouldForceEntry) {
+    openEntry(shouldForceEntry ? "reentry" : "entry");
+  }
+
+  entryForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    await submitLivinglyphEntryWord(entryInput.value);
+    closeEntry("entry_submit");
+  });
+
+  skipButton.addEventListener("click", () => {
+    closeEntry("entry_skip");
+  });
+
+  reentryLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      openEntry("reentry");
+    });
+  });
 }
 
 function markHeroVideoReady() {
@@ -791,6 +1059,7 @@ languageButtons.forEach((button) => {
 
 applyLanguage(getSavedLanguage(), false);
 setupBackToTop();
+setupLivinglyphEntry();
 setupHeroVideo();
 setupContactForm();
 setupSamuraiMarquees();

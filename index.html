@@ -27,7 +27,7 @@
     />
     <link rel="preload" href="./assets/video/livinglyph.mp4" as="video" type="video/mp4" />
     <link rel="icon" href="assets/images/livinglyph-logo.png" type="image/png" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=20260529profileimage1" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260601wordloop2" />
   </head>
   <body class="home-page top-page">
     <div class="site-noise" aria-hidden="true"></div>
@@ -95,6 +95,38 @@
       <div class="top-fixed-bg-overlay"></div>
     </div>
 
+    <section class="livinglyph-entry is-hidden" aria-labelledby="livinglyph-entry-title" data-livinglyph-entry hidden>
+      <div class="livinglyph-entry-panel" role="dialog" aria-modal="true" aria-describedby="livinglyph-entry-description">
+        <img class="livinglyph-entry-logo" src="assets/images/livinglyph-logo.png" alt="LIVINGLYPH" />
+        <p class="livinglyph-entry-kicker" data-livinglyph-entry-kicker>ENTER LIVINGLYPH</p>
+        <h2 id="livinglyph-entry-title" data-livinglyph-entry-title>LIVINGLYPHは、文字でイメージを描くアートプロジェクトです。</h2>
+        <p id="livinglyph-entry-description" data-livinglyph-entry-description>
+          あなたが作品にしてほしい言葉を入力してください。<br />
+          入力された言葉は、今後の作品制作のヒントとして使用します。
+        </p>
+        <form class="livinglyph-entry-form" data-livinglyph-entry-form>
+          <label class="sr-only" for="livinglyph-entry-word">作品にしてほしい言葉</label>
+          <input
+            class="livinglyph-entry-input"
+            id="livinglyph-entry-word"
+            type="text"
+            name="livinglyph-entry-word"
+            autocomplete="off"
+            maxlength="40"
+            placeholder="作品にしてほしい言葉"
+            data-livinglyph-entry-input
+          />
+          <p class="livinglyph-entry-note">
+            ※ 誹謗中傷・差別的表現・暴力的表現・公序良俗に反する内容・個人情報は入力しないでください。
+          </p>
+          <div class="livinglyph-entry-actions">
+            <button class="livinglyph-entry-button" type="submit" data-livinglyph-entry-submit>ENTER</button>
+            <button class="livinglyph-entry-button livinglyph-entry-button--ghost" type="button" data-livinglyph-entry-skip>SKIP</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
     <main id="top">
       <div class="top-story-scene">
         <section class="opening top-brand-hero" aria-label="LIVINGLYPH brand concept">
@@ -110,6 +142,24 @@
             </p>
           </div>
           <h1 class="sr-only">LIVINGLYPH</h1>
+        </section>
+
+        <section class="livinglyph-words" aria-labelledby="livinglyph-words-title">
+          <div class="livinglyph-words__inner reveal">
+            <p class="livinglyph-words-kicker">THANK YOU FOR VISITING</p>
+            <h2 id="livinglyph-words-title">訪問ありがとうございます。</h2>
+            <p class="livinglyph-words-heading">現在集まっている言葉</p>
+            <p class="livinglyph-words-description">
+              ここに集まった言葉が、今後LIVINGLYPHの新作制作のヒントになります。<br />
+              あなたが残した言葉も、どこかで作品になるかもしれません。
+            </p>
+            <p class="livinglyph-word-note">
+              ※ 誹謗中傷・差別的表現・暴力的表現・公序良俗に反する内容・個人情報は入力しないでください。<br />
+              入力された言葉は内容を確認のうえ、作品制作の参考として反映される場合があります。
+            </p>
+            <div class="livinglyph-word-cloud" aria-live="polite" data-livinglyph-word-cloud></div>
+            <a class="livinglyph-words-link word-entry-cta" href="/?entry=1" data-livinglyph-reentry-link>言葉を入力する</a>
+          </div>
         </section>
 
         <section class="brand-story" id="brand-story">
@@ -192,6 +242,6 @@
       <p data-i18n="footerCopy">© 2026 LIVINGLYPH. All Rights Reserved.</p>
     </footer>
 
-    <script src="assets/js/app.js?v=20260529topvideo2" defer></script>
+    <script src="assets/js/app.js?v=20260601wordloop2" defer></script>
   </body>
 </html>
