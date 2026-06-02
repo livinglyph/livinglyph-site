@@ -630,6 +630,84 @@ function setupSamuraiSlider() {
   updateSlider();
 }
 
+function setupSamuraiMap() {
+  const map = document.querySelector("[data-samurai-map]");
+
+  if (!map) {
+    return;
+  }
+
+  const visual = map.querySelector("[data-samurai-map-visual]");
+  const regions = [...map.querySelectorAll("[data-samurai-map-region]")];
+  const details = [...map.querySelectorAll("[data-samurai-map-detail]")];
+  const closeButtons = [...map.querySelectorAll("[data-samurai-map-close]")];
+
+  if (!visual || !regions.length || !details.length) {
+    return;
+  }
+
+  let activeRegionButton = null;
+
+  function closeDetail() {
+    visual.hidden = false;
+    regions.forEach((region) => {
+      region.setAttribute("aria-expanded", "false");
+    });
+    details.forEach((detail) => {
+      detail.classList.remove("is-active");
+      detail.setAttribute("hidden", "");
+    });
+
+    if (activeRegionButton) {
+      activeRegionButton.focus({ preventScroll: true });
+      activeRegionButton = null;
+    }
+  }
+
+  function openDetail(regionId, trigger) {
+    const targetDetail = details.find((detail) => detail.dataset.samuraiMapDetail === regionId);
+
+    if (!targetDetail) {
+      return;
+    }
+
+    activeRegionButton = trigger || null;
+    visual.hidden = true;
+    regions.forEach((region) => {
+      region.setAttribute("aria-expanded", String(region === trigger));
+    });
+    details.forEach((detail) => {
+      const isTarget = detail === targetDetail;
+
+      if (isTarget) {
+        detail.removeAttribute("hidden");
+      } else {
+        detail.setAttribute("hidden", "");
+      }
+
+      detail.classList.toggle("is-active", isTarget);
+    });
+
+    targetDetail.querySelector("[data-samurai-map-close]")?.focus({ preventScroll: true });
+  }
+
+  regions.forEach((region) => {
+    region.addEventListener("click", () => {
+      openDetail(region.dataset.samuraiMapRegion, region);
+    });
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", closeDetail);
+  });
+
+  map.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeDetail();
+    }
+  });
+}
+
 function shuffleItems(items) {
   const shuffled = [...items];
 
@@ -1082,6 +1160,7 @@ setupHeroVideo();
 setupContactForm();
 setupSamuraiMarquees();
 setupSamuraiSlider();
+setupSamuraiMap();
 setupWorksMarquees();
 setupWorksMovies();
 setupServiceVideoSlider();
