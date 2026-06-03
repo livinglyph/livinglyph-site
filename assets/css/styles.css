@@ -5131,7 +5131,7 @@ body:has(.policy-section) .subpage-main {
 .service-hero__kicker {
   color: var(--works-muted);
   font-family: var(--works-display);
-  font-size: clamp(0.92rem, 1.2vw, 1.1rem);
+  font-size: clamp(1.02rem, 1.38vw, 1.28rem);
   line-height: 1.5;
   letter-spacing: 0.08em;
 }
@@ -5198,7 +5198,7 @@ body:has(.policy-section) .subpage-main {
 
 .service-showcase__caption {
   width: min(100% - (var(--works-gutter) * 2), 54rem);
-  margin: 40px auto 175px;
+  margin: 56px auto 200px;
   color: rgba(246, 243, 238, 0.68);
   font-size: clamp(0.9rem, 1vw, 1rem);
   line-height: 2;
@@ -5207,7 +5207,7 @@ body:has(.policy-section) .subpage-main {
 }
 
 .service-page .service-showcase__caption {
-  margin: 40px auto 175px;
+  margin: 56px auto 200px;
 }
 
 .service-showcase + .service-create:not([hidden]) {
@@ -5503,7 +5503,7 @@ body:has(.policy-section) .subpage-main {
   width: min(100% - (var(--works-gutter) * 2), 760px);
   margin: clamp(1.2rem, 2.4vw, 2rem) auto 40px;
   color: rgba(246, 243, 238, 0.68);
-  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  font-size: clamp(1.02rem, 1.12vw, 1.14rem);
   line-height: 2;
   letter-spacing: 0.04em;
   text-align: center;
@@ -6092,6 +6092,10 @@ body:has(.policy-section) .subpage-main {
   line-height: 1.95;
   text-align: center;
   letter-spacing: 0.04em;
+}
+
+.service-page .process-caption {
+  font-size: clamp(1.06rem, 1.18vw, 1.14rem);
 }
 
 .works-gallery {
