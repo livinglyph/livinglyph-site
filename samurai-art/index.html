@@ -26,7 +26,7 @@
       rel="stylesheet"
     />
     <link rel="icon" href="../assets/images/livinglyph-logo.png" type="image/png" />
-    <link rel="stylesheet" href="../assets/css/styles.css?v=20260602samuraidetail1" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20260603samuraiorder1" />
   </head>
   <body>
     <div class="site-noise" aria-hidden="true"></div>
@@ -123,7 +123,10 @@
       </section>
 
       <section class="samurai-crafting reveal" aria-labelledby="samurai-crafting-title">
-        <h2 id="samurai-crafting-title">SAMURAI HELMET CRAFTING</h2>
+        <div class="samurai-section-heading">
+          <p>CRAFTING THE SAMURAI HELMET</p>
+          <h2 id="samurai-crafting-title">サムライ兜を形づくる</h2>
+        </div>
         <div class="samurai-crafting__grid">
           <figure class="samurai-crafting__source">
             <img src="../assets/images/samurai-art/create1.png" alt="Original samurai typography artwork" loading="lazy" />
@@ -139,8 +142,71 @@
         <div class="samurai-marquee__track" data-samurai-marquee></div>
       </section>
 
+      <section class="samurai-map reveal" aria-labelledby="samurai-map-title" data-samurai-map>
+        <div class="samurai-map-bg-globe" aria-hidden="true">
+          <img src="../assets/images/samurai/world-globe-network.png" alt="" loading="lazy" />
+        </div>
+        <div class="samurai-map-heading">
+          <p>SAMURAI ART MAP</p>
+          <h2 id="samurai-map-title">世界に広がるサムライアート</h2>
+          <p class="samurai-map-lead">
+            地域の名前や文化をもとに、世界各地のSAMURAI ARTを展開していくプロジェクトです。
+          </p>
+          <div class="samurai-map-country-labels">
+            <span class="samurai-map-country-label samurai-map-country-label--usa">USA</span>
+          </div>
+        </div>
+
+        <div class="samurai-map-shell">
+          <div class="samurai-map-visual" data-samurai-map-visual>
+            <div class="samurai-map-image-wrap">
+              <img
+                class="samurai-map-world"
+                src="../assets/images/samurai/us-map-glow.png"
+                alt="Glowing United States map for SAMURAI ART MAP"
+                loading="lazy"
+              />
+            </div>
+            <button
+              class="samurai-map-region samurai-map-region--active"
+              type="button"
+              data-samurai-map-region="california"
+              aria-label="CALIFORNIA SAMURAIを表示"
+              aria-expanded="false"
+            >
+              <span class="samurai-map-region-dot" aria-hidden="true"></span>
+              <span>CALIFORNIA</span>
+            </button>
+          </div>
+
+          <article class="samurai-map-detail" data-samurai-map-detail="california" aria-live="polite" hidden>
+            <div class="samurai-map-detail-heading">
+              <h3>CALIFORNIA SAMURAI</h3>
+              <p class="samurai-map-detail-kicker">CALIFORNIA / USA</p>
+            </div>
+            <div class="samurai-map-detail-media">
+              <img src="../assets/images/samurai/california-samurai.png" alt="CALIFORNIA SAMURAI" loading="lazy" />
+            </div>
+            <div class="samurai-map-detail-copy">
+              <p class="samurai-map-detail-description">
+                CALIFORNIA の自由な空気、ストリートカルチャー、そして西海岸の開放感をもとに制作した SAMURAI ART。<br />
+                地域名を文字の造形として再構成し、ひとつのサムライ像として描いています。
+              </p>
+              <p class="samurai-map-detail-description samurai-map-detail-description--en">
+                A SAMURAI ART piece inspired by CALIFORNIA’s free spirit, street culture, and West Coast openness.<br />
+                The regional identity is reconstructed through typography and shaped into a single samurai figure.
+              </p>
+              <button class="samurai-map-close" type="button" data-samurai-map-close aria-label="Close California detail">CLOSE</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="samurai-works reveal" aria-labelledby="samurai-works-title">
-        <h2 id="samurai-works-title">WORKS</h2>
+        <div class="samurai-section-heading">
+          <p>SELECTED WORKS</p>
+          <h2 id="samurai-works-title">実績</h2>
+        </div>
         <div class="samurai-works-slider" data-samurai-works-slider tabindex="0" aria-label="SAMURAI ART works carousel">
           <div class="samurai-works-viewport">
             <div class="samurai-works-backdrop" aria-hidden="true">
@@ -253,66 +319,6 @@
             </div>
             <div class="samurai-works-pagination" data-samurai-works-pagination aria-label="Works slider pagination"></div>
           </div>
-        </div>
-      </section>
-
-      <section class="samurai-map reveal" aria-labelledby="samurai-map-title" data-samurai-map>
-        <div class="samurai-map-bg-globe" aria-hidden="true">
-          <img src="../assets/images/samurai/world-globe-network.png" alt="" loading="lazy" />
-        </div>
-        <div class="samurai-map-heading">
-          <p>SAMURAI ART MAP</p>
-          <h2 id="samurai-map-title">世界に広がるサムライアート</h2>
-          <p class="samurai-map-lead">
-            地域の名前や文化をもとに、世界各地のSAMURAI ARTを展開していくプロジェクトです。
-          </p>
-          <div class="samurai-map-country-labels">
-            <span class="samurai-map-country-label samurai-map-country-label--usa">USA</span>
-          </div>
-        </div>
-
-        <div class="samurai-map-shell">
-          <div class="samurai-map-visual" data-samurai-map-visual>
-            <div class="samurai-map-image-wrap">
-              <img
-                class="samurai-map-world"
-                src="../assets/images/samurai/us-map-glow.png"
-                alt="Glowing United States map for SAMURAI ART MAP"
-                loading="lazy"
-              />
-            </div>
-            <button
-              class="samurai-map-region samurai-map-region--active"
-              type="button"
-              data-samurai-map-region="california"
-              aria-label="CALIFORNIA SAMURAIを表示"
-              aria-expanded="false"
-            >
-              <span class="samurai-map-region-dot" aria-hidden="true"></span>
-              <span>CALIFORNIA</span>
-            </button>
-          </div>
-
-          <article class="samurai-map-detail" data-samurai-map-detail="california" aria-live="polite" hidden>
-            <div class="samurai-map-detail-heading">
-              <h3>CALIFORNIA SAMURAI</h3>
-              <p class="samurai-map-detail-kicker">CALIFORNIA / USA</p>
-            </div>
-            <div class="samurai-map-detail-media">
-              <img src="../assets/images/samurai/california-samurai.png" alt="CALIFORNIA SAMURAI" loading="lazy" />
-            </div>
-            <div class="samurai-map-detail-copy">
-              <p class="samurai-map-detail-description">
-                CALIFORNIA の自由な空気、ストリートカルチャー、そして西海岸の開放感をもとに制作した SAMURAI ART。<br />
-                地域名を文字の造形として再構成し、ひとつのサムライ像として描いています。
-              </p>
-              <p class="samurai-map-detail-description samurai-map-detail-description--en">
-                A SAMURAI ART piece inspired by CALIFORNIA’s free spirit, street culture, and West Coast openness.<br />
-                The regional identity is reconstructed through typography and shaped into a single samurai figure.
-              </p>
-              <button class="samurai-map-close" type="button" data-samurai-map-close aria-label="Close California detail">CLOSE</button>
-            </div>
-          </article>
         </div>
       </section>
 
